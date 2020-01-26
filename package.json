@@ -1,6 +1,6 @@
 {
     "name": "portfolio",
-    "homepage": "https://muniatu.github.io",
+    "homepage": "https://muniatu.github.io/portfolio",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -14,11 +14,7 @@
     },
     "scripts": {
         "predeploy": "npm run build",
-<<<<<<< HEAD
         "deploy": "gh-pages -d build",
-=======
-        "deploy": "gh-pages -b master -d build",
->>>>>>> e40846421b53c79059add7104906f3ec625f8149
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
