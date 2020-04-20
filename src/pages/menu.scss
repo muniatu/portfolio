@@ -1,0 +1,25 @@
+.page-wrapper {
+  height: 90vh;
+  width: 100vw;
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-menu {
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  a {
+    color: #fff;
+    font-size: 24px;
+    display: block;
+    text-decoration: none;
+  }
+}
