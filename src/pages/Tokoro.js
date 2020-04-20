@@ -2,11 +2,8 @@ import React from 'react';
 import 'typeface-pt-serif';
 import MetaTags from 'react-meta-tags';
 import useHorizontal from '@oberon-amsterdam/horizontal/hook';
-import InViewMonitor from 'react-inview-monitor';
-import config from 'react-reveal/globals';
+import InViewMonitor from '../monitor';
 import "animate.css/animate.min.css";
-
-config({ ssrFadeout: true });
 
 //https://medium.com/oberonamsterdam/creating-a-horizontally-scrolling-website-9b14e4e048eb
 export default () => {

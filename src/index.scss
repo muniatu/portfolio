@@ -1,3 +1,5 @@
+html, body {height: 100%}
+
 body {
   background-color: #000;
   color: #fff;
@@ -99,5 +101,5 @@ body {
 }
 
 .vis-hidden {
-  visibility: hidden;
+  opacity: 0;
 }
