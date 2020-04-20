@@ -24,7 +24,7 @@ export default () =>
                 <Link to="/tokoro">Tokoro</Link>
             </li>
             <li>
-                <Link to="/filehippo">Flapimas</Link>
+                <Link to="/flapimas">Flapimas</Link>
             </li>
         </ul>
     </div>;
