@@ -1,6 +1,7 @@
 import React from 'react';
 import './menu.scss';
 import '../index.scss';
+import '../config.scss';
 import MetaTags from 'react-meta-tags';
 import {
     Link
@@ -25,6 +26,9 @@ export default () =>
             </li>
             <li>
                 <Link to="/flapimas">Flapimas</Link>
+            </li>
+            <li>
+                <Link to="/softonic-design-system">Softonic Design System</Link>
             </li>
         </ul>
     </div>;

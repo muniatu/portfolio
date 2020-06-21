@@ -4,6 +4,7 @@ import Solojuegos from './pages/Solojuegos'
 import Filehippo from './pages/Filehippo'
 import Tokoro from './pages/Tokoro'
 import Flapimas from './pages/Flapimas'
+import SoftonicDesignSystem from './pages/SoftonicDesignSystem'
 import Menu from './pages/Menu'
 import './index.scss';
 import 'lato-font';
@@ -32,6 +33,9 @@ const App = () => {
         </Route>
         <Route path="/flapimas">
           <Flapimas />
+        </Route>
+        <Route path="/softonic-design-system">
+          <SoftonicDesignSystem />
         </Route>
       </Switch>
     </Router>
