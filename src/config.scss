@@ -1,0 +1,109 @@
+$background-color: #121212;
+
+//provisional spacings
+$spacing-1: 8px; // 8px
+$spacing-2: $spacing-1 * 2; // 16px
+$spacing-3: $spacing-1 * 3; // 24px
+$spacing-4: $spacing-1 * 4; // 32px
+$spacing-5: $spacing-1 * 5; // 40px
+$spacing-6: $spacing-1 * 6; // 48px
+$spacing-7: $spacing-1 * 7; // 56px
+$spacing-8: $spacing-1 * 8; // 64px
+$spacing-9: $spacing-1 * 9; // 72px
+$spacing-10: $spacing-1 * 10; // 80px
+
+//	Complete acronym reference output
+//	example: ph-xxs
+
+//	First letter (Type):
+//	p = padding
+//	m = margin
+
+//	Second letter (Position):
+//	a = all
+//	t = top
+//	r = right
+//	b = bottom
+//	l = left
+//	h = horizontal
+//	v = vertical
+
+//	Last letter (Size):
+// xxs = extra small
+// xs = extra small
+//	s = small
+//	m = medium
+//	l = large
+//	xl = extra large
+
+$sizes: (
+  xxxs: $spacing-1,
+  xxs: $spacing-2,
+  xs: $spacing-4,
+  s: $spacing-5,
+  m: $spacing-6,
+  l: $spacing-7,
+  xl: $spacing-8,
+  xxl: $spacing-9,
+  xxxl: $spacing-10,
+  n: 0
+);
+
+$positions: (
+  pt: (
+    padding-top
+  ),
+  pb: (
+    padding-bottom
+  ),
+  pr: (
+    padding-right
+  ),
+  pl: (
+    padding-left
+  ),
+  ph: (
+    padding-left,
+    padding-right
+  ),
+  pv: (
+    padding-top,
+    padding-bottom
+  ),
+  pa: (
+    padding
+  ),
+  mt: (
+    margin-top
+  ),
+  mb: (
+    margin-bottom
+  ),
+  mr: (
+    margin-right
+  ),
+  ml: (
+    margin-left
+  ),
+  mh: (
+    margin-left,
+    margin-right
+  ),
+  mv: (
+    margin-top,
+    margin-bottom
+  ),
+  ma: (
+    margin
+  )
+);
+
+@each $position, $position-values in $positions {
+  @each $size, $size-value in $sizes {
+    .#{$position}-#{$size} {
+      @each $attributes in $position-values {
+        #{$attributes}: $size-value !important;
+      }
+    }
+  }
+}
