@@ -1,19 +1,11 @@
 import type { Metadata } from "next";
-import { Lato, PT_Serif } from "next/font/google";
+import { Geist } from "next/font/google";
 import Nav from "@/components/ui/Nav";
 import "@/styles/globals.css";
 
-const lato = Lato({
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
   variable: "--font-sans",
-  display: "swap",
-});
-
-const ptSerif = PT_Serif({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-serif",
   display: "swap",
 });
 
@@ -32,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${lato.variable} ${ptSerif.variable}`}>
+    <html lang="en" className={geist.variable}>
       <body>
         <Nav />
         {children}

@@ -11,8 +11,7 @@
   --color-flapimas: #ECD401;
   --color-softonic: #00ffbf;
 
-  --font-sans: "Lato", "Helvetica Neue", sans-serif;
-  --font-serif: "PT Serif", Georgia, serif;
+  --font-sans: var(--font-sans), "Helvetica Neue", sans-serif;
 }
 
 body {
