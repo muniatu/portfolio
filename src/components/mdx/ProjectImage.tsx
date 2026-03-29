@@ -1,18 +1,29 @@
 import Image from "next/image";
+import fs from "fs";
+import path from "path";
+import { imageSize } from "image-size";
 
 type ProjectImageProps = {
   src: string;
   alt: string;
-  width?: number;
-  height?: number;
 };
 
-export default function ProjectImage({
-  src,
-  alt,
-  width = 900,
-  height = 600,
-}: ProjectImageProps) {
+export default function ProjectImage({ src, alt }: ProjectImageProps) {
+  const filePath = path.join(process.cwd(), "public", src);
+  let width = 900;
+  let height = 600;
+
+  try {
+    const buffer = fs.readFileSync(filePath);
+    const dimensions = imageSize(new Uint8Array(buffer));
+    if (dimensions.width && dimensions.height) {
+      width = dimensions.width;
+      height = dimensions.height;
+    }
+  } catch {
+    // fallback to defaults if file not found
+  }
+
   return (
     <figure className="my-12">
       <Image
