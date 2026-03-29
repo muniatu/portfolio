@@ -25,7 +25,7 @@ export default function ProjectImage({ src, alt }: ProjectImageProps) {
   }
 
   return (
-    <figure className="my-12">
+    <figure className="my-12 flex justify-center">
       <Image
         src={src}
         alt={alt}
