@@ -20,7 +20,7 @@ export default function ProjectImage({
         alt={alt}
         width={width}
         height={height}
-        className="w-full rounded-lg"
+        className="max-w-full h-auto rounded-lg"
       />
     </figure>
   );
