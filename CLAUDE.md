@@ -37,3 +37,7 @@ Designer, creative coder, and amateur photographer.
 ## Design Spec
 
 Full spec at `docs/superpowers/specs/2026-03-29-portfolio-modernization-design.md`
+
+## Git
+
+- Do not include Co-authored-by or Generated with Claude Code in commit messages.
