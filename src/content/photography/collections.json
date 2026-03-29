@@ -1,0 +1,17 @@
+{
+  "collections": [
+    {
+      "slug": "sample",
+      "title": "Sample Collection",
+      "description": "A sample photography collection",
+      "cover": "/images/photography/sample/01.jpg",
+      "photos": [
+        {
+          "src": "/images/photography/sample/01.jpg",
+          "alt": "Sample photo",
+          "tags": ["sample"]
+        }
+      ]
+    }
+  ]
+}
