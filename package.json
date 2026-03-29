@@ -13,6 +13,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "framer-motion": "^12.38.0",
     "gray-matter": "^4.0.3",
+    "gsap": "^3.14.2",
     "lightningcss": "^1.32.0",
     "lightningcss-win32-x64-msvc": "^1.32.0",
     "next": "^16.2.1",
