@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getFeaturedProjects } from "@/lib/mdx";
 import { getAllCollections } from "@/lib/photography";
+import HeroCanvas from "@/components/ui/HeroCanvas";
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
@@ -10,14 +11,17 @@ export default function HomePage() {
   return (
     <main className="min-h-screen pt-28 px-8 pb-16">
       {/* Hero */}
-      <section className="mb-24">
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 max-w-4xl leading-tight">
-          Designer &<br />
-          Creative Coder
-        </h1>
-        <p className="text-xl text-white/60 max-w-xl">
-          Product design, creative coding, and photography by Adria Compte.
-        </p>
+      <section className="relative mb-24">
+        <HeroCanvas />
+        <div className="pt-[20vh]">
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 max-w-4xl leading-tight">
+            Designer &<br />
+            Creative Coder
+          </h1>
+          <p className="text-xl text-white/60 max-w-xl">
+            Product design, creative coding, and photography by Adria Compte.
+          </p>
+        </div>
       </section>
 
       {/* Featured Projects */}
