@@ -2,23 +2,21 @@ import Image from "next/image";
 
 type ImageRowProps = {
   images: string;
-  height?: number;
 };
 
-export default function ImageRow({ images, height = 500 }: ImageRowProps) {
+export default function ImageRow({ images }: ImageRowProps) {
   const parsed: { src: string; alt: string }[] = JSON.parse(images);
 
   return (
-    <div className="my-12 flex gap-4 overflow-x-auto pb-4 -mx-8 px-8">
+    <div className="image-row my-12 max-w-5xl flex gap-4 overflow-x-auto md:overflow-visible">
       {parsed.map((img) => (
-        <div key={img.src} className="flex-shrink-0">
+        <div key={img.src} className="flex-shrink-0 md:flex-shrink md:min-w-0 md:flex-1">
           <Image
             src={img.src}
             alt={img.alt}
-            width={Math.round(height * 0.56)}
-            height={height}
-            className="rounded-lg"
-            style={{ height: `${height}px`, width: "auto" }}
+            width={400}
+            height={700}
+            className="rounded-lg w-auto h-[400px] md:w-full md:h-auto"
           />
         </div>
       ))}

@@ -36,8 +36,8 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
   return (
     <main className="min-h-screen pt-28 pb-16">
-      <article className="mx-auto max-w-3xl px-8">
-        <header className="mb-12">
+      <article className="mx-auto max-w-5xl px-8">
+        <header className="mx-auto max-w-3xl mb-12">
           <h1 className="text-5xl font-bold mb-4">{frontmatter.title}</h1>
           <p className="text-xl text-white/60">{frontmatter.description}</p>
           <div className="flex gap-2 mt-4">
@@ -51,7 +51,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             ))}
           </div>
         </header>
-        <div className="prose prose-invert prose-lg max-w-none">
+        <div className="prose prose-invert prose-lg mx-auto max-w-3xl [&>figure]:mx-auto [&>figure]:max-w-5xl [&>div]:mx-auto [&>div]:max-w-5xl [&_.image-row]:max-w-5xl">
           <MDXRemote source={content} components={mdxComponents} />
         </div>
       </article>

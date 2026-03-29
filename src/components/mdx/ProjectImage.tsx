@@ -14,7 +14,7 @@ export default function ProjectImage({
   height = 600,
 }: ProjectImageProps) {
   return (
-    <figure className="my-12">
+    <figure className="my-12 max-w-5xl">
       <Image
         src={src}
         alt={alt}
