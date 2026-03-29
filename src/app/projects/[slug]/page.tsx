@@ -51,7 +51,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             ))}
           </div>
         </header>
-        <div className="prose prose-invert prose-lg mx-auto max-w-3xl [&>figure]:mx-auto [&>figure]:max-w-5xl [&>div]:mx-auto [&>div]:max-w-5xl [&_.image-row]:max-w-5xl">
+        <div className="prose prose-invert prose-lg max-w-none [&>p]:mx-auto [&>p]:max-w-3xl [&>h1]:mx-auto [&>h1]:max-w-3xl [&>h2]:mx-auto [&>h2]:max-w-3xl [&>h3]:mx-auto [&>h3]:max-w-3xl [&>h4]:mx-auto [&>h4]:max-w-3xl [&>ul]:mx-auto [&>ul]:max-w-3xl [&>ol]:mx-auto [&>ol]:max-w-3xl [&>blockquote]:mx-auto [&>blockquote]:max-w-3xl [&>a]:mx-auto [&>a]:max-w-3xl [&>a]:block">
           <MDXRemote source={content} components={mdxComponents} />
         </div>
       </article>

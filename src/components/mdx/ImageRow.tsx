@@ -8,7 +8,7 @@ export default function ImageRow({ images }: ImageRowProps) {
   const parsed: { src: string; alt: string }[] = JSON.parse(images);
 
   return (
-    <div className="image-row my-12 max-w-5xl flex gap-4 overflow-x-auto md:overflow-visible">
+    <div className="my-12 flex gap-4 overflow-x-auto md:overflow-visible">
       {parsed.map((img) => (
         <div key={img.src} className="flex-shrink-0 md:flex-shrink md:min-w-0 md:flex-1">
           <Image
