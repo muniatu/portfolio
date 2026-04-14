@@ -1,15 +1,808 @@
 {
   "collections": [
     {
-      "slug": "sample",
-      "title": "Sample Collection",
-      "description": "A sample photography collection",
-      "cover": "/images/photography/sample/01.jpg",
+      "slug": "all",
+      "title": "Photography",
+      "description": "A curated collection of photographs",
+      "cover": "/images/photography/sample/R0018109.jpg",
       "photos": [
         {
-          "src": "/images/photography/sample/01.jpg",
-          "alt": "Sample photo",
-          "tags": ["sample"]
+          "src": "/images/photography/sample/DSC08950.jpg",
+          "alt": "DSC08950",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0005327.jpg",
+          "alt": "R0005327",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC07313.jpg",
+          "alt": "DSC07313",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC04701.jpg",
+          "alt": "DSC04701",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC08513.jpg",
+          "alt": "DSC08513",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0018392.jpg",
+          "alt": "R0018392",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0015245.jpg",
+          "alt": "R0015245",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/PXL_20230914_235251448.jpg",
+          "alt": "PXL 20230914 235251448",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF4738.jpg",
+          "alt": "DSCF4738",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC04310.jpg",
+          "alt": "DSC04310",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0005920.jpg",
+          "alt": "R0005920",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0004088.jpg",
+          "alt": "R0004088",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC08875.jpg",
+          "alt": "DSC08875",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0007546.jpg",
+          "alt": "R0007546",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC06621.jpg",
+          "alt": "DSC06621",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF4301-2.jpg",
+          "alt": "DSCF4301 2",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC07368.jpg",
+          "alt": "DSC07368",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC00301.jpg",
+          "alt": "DSC00301",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0006823.jpg",
+          "alt": "R0006823",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0000466.jpg",
+          "alt": "R0000466",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0007108.jpg",
+          "alt": "R0007108",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0008100.jpg",
+          "alt": "R0008100",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0017092.jpg",
+          "alt": "R0017092",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0008391.jpg",
+          "alt": "R0008391",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF3712.jpg",
+          "alt": "DSCF3712",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0001112.jpg",
+          "alt": "R0001112",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0014426.jpg",
+          "alt": "R0014426",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF4025-2.jpg",
+          "alt": "DSCF4025 2",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC01136.jpg",
+          "alt": "DSC01136",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0006331.jpg",
+          "alt": "R0006331",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF4187-2.jpg",
+          "alt": "DSCF4187 2",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC08286.jpg",
+          "alt": "DSC08286",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC07806.jpg",
+          "alt": "DSC07806",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC00480.jpg",
+          "alt": "DSC00480",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0004601.jpg",
+          "alt": "R0004601",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0011123.jpg",
+          "alt": "R0011123",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0004414.jpg",
+          "alt": "R0004414",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC09574.jpg",
+          "alt": "DSC09574",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC07135.jpg",
+          "alt": "DSC07135",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0018342.jpg",
+          "alt": "R0018342",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0013753.jpg",
+          "alt": "R0013753",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF3616.jpg",
+          "alt": "DSCF3616",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0009929.jpg",
+          "alt": "R0009929",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF2401.jpg",
+          "alt": "DSCF2401",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF2553.jpg",
+          "alt": "DSCF2553",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0015941.jpg",
+          "alt": "R0015941",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0005615.jpg",
+          "alt": "R0005615",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC09518.jpg",
+          "alt": "DSC09518",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC09014.jpg",
+          "alt": "DSC09014",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC08092.jpg",
+          "alt": "DSC08092",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF3723.jpg",
+          "alt": "DSCF3723",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0002130.jpg",
+          "alt": "R0002130",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC00295.jpg",
+          "alt": "DSC00295",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0015361.jpg",
+          "alt": "R0015361",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC08142.jpg",
+          "alt": "DSC08142",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC07385.jpg",
+          "alt": "DSC07385",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0003606.jpg",
+          "alt": "R0003606",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0018109.jpg",
+          "alt": "R0018109",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0007727.jpg",
+          "alt": "R0007727",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0005484.jpg",
+          "alt": "R0005484",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/PXL_20230906_183810433.jpg",
+          "alt": "PXL 20230906 183810433",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0009166.jpg",
+          "alt": "R0009166",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0016073.jpg",
+          "alt": "R0016073",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0003293.jpg",
+          "alt": "R0003293",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0002551.jpg",
+          "alt": "R0002551",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0003128.jpg",
+          "alt": "R0003128",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC06019.jpg",
+          "alt": "DSC06019",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0011186.jpg",
+          "alt": "R0011186",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0009909.jpg",
+          "alt": "R0009909",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF4642.jpg",
+          "alt": "DSCF4642",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0003831.jpg",
+          "alt": "R0003831",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0011014.jpg",
+          "alt": "R0011014",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC04822.jpg",
+          "alt": "DSC04822",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0007296.jpg",
+          "alt": "R0007296",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC08922.jpg",
+          "alt": "DSC08922",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0001041.jpg",
+          "alt": "R0001041",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0016273.jpg",
+          "alt": "R0016273",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0008249.jpg",
+          "alt": "R0008249",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0010378.jpg",
+          "alt": "R0010378",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0018008.jpg",
+          "alt": "R0018008",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF4115.jpg",
+          "alt": "DSCF4115",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0016897.jpg",
+          "alt": "R0016897",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0011286.jpg",
+          "alt": "R0011286",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0011274.jpg",
+          "alt": "R0011274",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0010398.jpg",
+          "alt": "R0010398",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF3464.jpg",
+          "alt": "DSCF3464",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0018196.jpg",
+          "alt": "R0018196",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0002868.jpg",
+          "alt": "R0002868",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF4470.jpg",
+          "alt": "DSCF4470",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0016007.jpg",
+          "alt": "R0016007",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0006123.jpg",
+          "alt": "R0006123",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC00695.jpg",
+          "alt": "DSC00695",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC09908.jpg",
+          "alt": "DSC09908",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0008457.jpg",
+          "alt": "R0008457",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC08617.jpg",
+          "alt": "DSC08617",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF2762.jpg",
+          "alt": "DSCF2762",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0000715.jpg",
+          "alt": "R0000715",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0003173.jpg",
+          "alt": "R0003173",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF4243-2.jpg",
+          "alt": "DSCF4243 2",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC00121.jpg",
+          "alt": "DSC00121",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC08611.jpg",
+          "alt": "DSC08611",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0014400.jpg",
+          "alt": "R0014400",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0003700.jpg",
+          "alt": "R0003700",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0010887.jpg",
+          "alt": "R0010887",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0010821.jpg",
+          "alt": "R0010821",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSCF2429.jpg",
+          "alt": "DSCF2429",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0015547.jpg",
+          "alt": "R0015547",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0017975.jpg",
+          "alt": "R0017975",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0017970.jpg",
+          "alt": "R0017970",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0013738.jpg",
+          "alt": "R0013738",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0016344.jpg",
+          "alt": "R0016344",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0007475.jpg",
+          "alt": "R0007475",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/DSC02037.jpg",
+          "alt": "DSC02037",
+          "tags": [
+            "photography"
+          ]
+        },
+        {
+          "src": "/images/photography/sample/R0017468.jpg",
+          "alt": "R0017468",
+          "tags": [
+            "photography"
+          ]
         }
       ]
     }

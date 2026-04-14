@@ -1,91 +1,60 @@
-import Link from "next/link";
-import Image from "next/image";
-import { getFeaturedProjects } from "@/lib/mdx";
-import { getAllCollections } from "@/lib/photography";
-import HeroCanvas from "@/components/ui/HeroCanvas";
+import { getAllProjects } from "@/lib/mdx";
+import { getAllPhotos } from "@/lib/photography";
+import HeroSection from "@/components/ui/HeroSection";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import ProjectRow from "@/components/ui/ProjectRow";
+import TeachingSection from "@/components/ui/TeachingSection";
+import PhotoReel from "@/components/ui/PhotoReel";
+import ContactSection from "@/components/ui/ContactSection";
+
+export const metadata = {
+  alternates: { canonical: "https://adriacompte.com" },
+};
 
 export default function HomePage() {
-  const featuredProjects = getFeaturedProjects();
-  const collections = getAllCollections();
+  const allProjects = getAllProjects();
+  const allPhotos = getAllPhotos();
 
   return (
-    <main className="min-h-screen pt-28 px-8 pb-16">
-      {/* Hero */}
-      <section className="relative mb-24">
-        <HeroCanvas />
-        <div className="pt-[20vh]">
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 max-w-4xl leading-tight">
-            Designer &<br />
-            Creative Coder
-          </h1>
-          <p className="text-xl text-white/60 max-w-xl">
-            Product design, creative coding, and photography by Adria Compte.
-          </p>
-        </div>
-      </section>
+    <main>
+      <HeroSection />
 
-      {/* Featured Projects */}
-      <section className="mb-24">
-        <h2 className="text-sm uppercase tracking-widest text-white/40 mb-8">
-          Selected Work
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl">
-          {featuredProjects.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/projects/${project.slug}`}
-              className="group block"
-            >
-              <div className="relative aspect-video overflow-hidden rounded-lg mb-4">
-                <Image
-                  src={project.cover}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-2xl font-bold mb-1">{project.title}</h3>
-              <p className="text-white/60">{project.description}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Photography Preview */}
-      {collections.length > 0 && (
-        <section className="mb-24">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-sm uppercase tracking-widest text-white/40">
-              Photography
-            </h2>
-            <Link
-              href="/photography"
-              className="text-sm text-white/40 hover:text-[var(--color-accent)] transition-colors"
-            >
-              View all
-            </Link>
+      <div>
+        {/* Projects — editorial typographic list */}
+        <section className="pt-24">
+          <div className="px-8 mb-16">
+            <ScrollReveal>
+              <span className="inline-block rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.2em] bg-white/5 border border-white/10 text-white/50">
+                Selected Work
+              </span>
+            </ScrollReveal>
           </div>
-          <div className="flex gap-4 overflow-x-auto pb-4">
-            {collections.map((collection) => (
-              <Link
-                key={collection.slug}
-                href={`/photography/${collection.slug}`}
-                className="group flex-shrink-0"
-              >
-                <div className="relative w-80 aspect-[3/2] overflow-hidden rounded-lg mb-2">
-                  <Image
-                    src={collection.cover}
-                    alt={collection.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <p className="font-medium">{collection.title}</p>
-              </Link>
+          <div>
+            {allProjects.map((project, i) => (
+              <ProjectRow
+                key={project.slug}
+                slug={project.slug}
+                title={project.title}
+                description={project.description}
+                tags={project.tags}
+                date={project.date}
+                index={i}
+              />
             ))}
           </div>
         </section>
-      )}
+
+        {/* Teaching */}
+        <TeachingSection />
+
+        {/* Photography — S-curve reel */}
+        {allPhotos.length > 0 && (
+          <PhotoReel photos={allPhotos} maxPhotos={30} />
+        )}
+      </div>
+
+      {/* Contact — transparent bg, canvas shows through */}
+      <ContactSection />
     </main>
   );
 }

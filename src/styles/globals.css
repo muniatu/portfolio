@@ -2,9 +2,11 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-background: #212121;
+  --color-background: #0a0a0a;
   --color-foreground: #ffffff;
   --color-accent: #00ffbf;
+  --color-surface: #111111;
+  --color-muted: #888888;
   --color-solojuegos: #00B83F;
   --color-filehippo: #0192DE;
   --color-tokoro: #EA4271;
@@ -12,6 +14,11 @@
   --color-softonic: #00ffbf;
 
   --font-sans: var(--font-sans), "Helvetica Neue", sans-serif;
+  --font-display: var(--font-display), "Georgia", serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -22,7 +29,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Film grain overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
 ::selection {
   background-color: var(--color-accent);
   color: #000;
+}
+
+/* Display font utility */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

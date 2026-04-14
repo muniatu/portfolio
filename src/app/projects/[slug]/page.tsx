@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/mdx";
 import { mdxComponents } from "@/components/mdx";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 type Params = Promise<{ slug: string }>;
 
@@ -16,6 +19,13 @@ export async function generateMetadata({ params }: { params: Params }) {
     return {
       title: frontmatter.title,
       description: frontmatter.description,
+      alternates: { canonical: `https://adriacompte.com/projects/${slug}` },
+      openGraph: {
+        title: frontmatter.title,
+        description: frontmatter.description,
+        type: "article",
+        images: frontmatter.cover ? [{ url: frontmatter.cover }] : [],
+      },
     };
   } catch {
     return {};
@@ -35,23 +45,70 @@ export default async function ProjectPage({ params }: { params: Params }) {
   const { frontmatter, content } = project;
 
   return (
-    <main className="min-h-screen pt-28 pb-16">
+    <main className="min-h-screen pt-32 pb-24 bg-[var(--color-background)]">
       <article className="mx-auto max-w-5xl px-8">
-        <header className="mx-auto max-w-3xl mb-12">
-          <h1 className="text-5xl font-bold mb-4">{frontmatter.title}</h1>
-          <p className="text-xl text-white/60">{frontmatter.description}</p>
-          <div className="flex gap-2 mt-4">
-            {frontmatter.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs px-2 py-1 rounded-full bg-white/10"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        <header className="mx-auto max-w-3xl mb-16">
+          <ScrollReveal>
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-[var(--color-accent)] transition-colors duration-300 mb-8"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M13 7H1M6 2L1 7l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Projects
+            </Link>
+          </ScrollReveal>
+          <ScrollReveal
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0, duration: 1, ease: "power3.out" }}
+          >
+            <h1 className="font-display text-5xl md:text-7xl tracking-tighter leading-[0.95] mb-6">
+              {frontmatter.title}
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal
+            from={{ opacity: 0, y: 30 }}
+            to={{ opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }}
+          >
+            <p className="text-xl text-white/50 leading-relaxed mb-6">
+              {frontmatter.description}
+            </p>
+            <div className="flex gap-2">
+              {frontmatter.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[11px] px-2.5 py-1 rounded-full bg-white/[0.06] text-white/40"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </ScrollReveal>
         </header>
-        <div className="prose prose-invert prose-lg max-w-none [&>p]:mx-auto [&>p]:max-w-3xl [&>h1]:mx-auto [&>h1]:max-w-3xl [&>h2]:mx-auto [&>h2]:max-w-3xl [&>h3]:mx-auto [&>h3]:max-w-3xl [&>h4]:mx-auto [&>h4]:max-w-3xl [&>ul]:mx-auto [&>ul]:max-w-3xl [&>ol]:mx-auto [&>ol]:max-w-3xl [&>blockquote]:mx-auto [&>blockquote]:max-w-3xl [&>a]:mx-auto [&>a]:max-w-3xl [&>a]:block">
+
+        {/* Hero cover image with parallax */}
+        {frontmatter.cover && (
+          <ScrollReveal
+            from={{ opacity: 0, y: 60, scale: 0.98 }}
+            to={{ opacity: 1, y: 0, scale: 1, duration: 1.2, ease: "power3.out" }}
+            className="mb-16"
+          >
+            <div className="rounded-[1.5rem] p-1 bg-white/[0.03] border border-white/[0.06]">
+              <div className="relative aspect-video overflow-hidden rounded-[calc(1.5rem-4px)]">
+                <Image
+                  src={frontmatter.cover}
+                  alt={frontmatter.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+        )}
+
+        <div className="prose prose-invert prose-lg max-w-none prose-p:text-white/[0.85] prose-p:leading-relaxed prose-headings:font-display prose-headings:tracking-tight [&>p]:mx-auto [&>p]:max-w-3xl [&>h1]:mx-auto [&>h1]:max-w-3xl [&>h2]:mx-auto [&>h2]:max-w-3xl [&>h3]:mx-auto [&>h3]:max-w-3xl [&>h4]:mx-auto [&>h4]:max-w-3xl [&>ul]:mx-auto [&>ul]:max-w-3xl [&>ol]:mx-auto [&>ol]:max-w-3xl [&>blockquote]:mx-auto [&>blockquote]:max-w-3xl [&>a]:mx-auto [&>a]:max-w-3xl [&>a]:block">
           <MDXRemote source={content} components={mdxComponents} />
         </div>
       </article>

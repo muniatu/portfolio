@@ -27,19 +27,32 @@ export default function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
-    const tween = gsap.fromTo(el, from, {
-      ...to,
-      scrollTrigger: {
-        trigger: el,
-        start: "top 85%",
-        toggleActions: "play none none none",
-        ...trigger,
-      },
-    });
+    // Small delay to let page transition finish before GSAP measures positions
+    const timer = setTimeout(() => {
+      gsap.set(el, from);
+      const tween = gsap.to(el, {
+        ...to,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play none none none",
+          ...trigger,
+        },
+      });
+
+      // Force a refresh so GSAP re-evaluates positions after page transition
+      ScrollTrigger.refresh();
+
+      return () => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      };
+    }, 100);
 
     return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
+      clearTimeout(timer);
+      // Kill any GSAP animations on this element
+      gsap.killTweensOf(el);
     };
   }, []);
 
