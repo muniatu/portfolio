@@ -78,8 +78,9 @@ export default function PhotoReel({ photos, maxPhotos = 20 }: PhotoReelProps) {
 
       const pos = sCurve(adjustedT);
 
-      // Portrait 2:3
-      const baseW = 100;
+      // Portrait 2:3 — smaller on mobile
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      const baseW = isMobile ? 55 : 100;
       const w = baseW * scale;
       const h = w * 1.5;
 
