@@ -65,24 +65,24 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100dvh] flex items-end px-5 md:px-8 pb-12 md:pb-16"
+      className="relative min-h-[100dvh] flex items-center md:items-end px-5 md:px-8 pb-0 md:pb-16"
     >
       <div ref={contentRef} className="relative z-10 pb-20 w-full max-w-5xl">
         <TextReveal
           text="Senior Product Designer,"
           tag="h2"
-          className="font-display text-[2rem] md:text-[6rem] leading-[0.95] tracking-tighter"
+          className="font-display text-[clamp(1.5rem,8.5vw,6rem)] leading-[0.95] tracking-tighter w-full"
           delay={0.3}
         />
         <TextReveal
           text="Creative Coder & Entrepreneur"
           tag="h2"
-          className="font-display text-[1.75rem] md:text-[5.5rem] leading-[0.95] tracking-tighter italic"
+          className="font-display text-[clamp(1.5rem,7vw,6rem)] leading-[0.95] tracking-tighter italic w-full"
           delay={0.8}
         />
         <p
           ref={subtitleRef}
-          className="text-sm md:text-lg text-white/40 mt-6 md:mt-8 leading-relaxed w-full md:max-w-xl"
+          className="text-sm md:text-lg text-white/40 mt-6 md:mt-8 leading-relaxed"
           style={{ opacity: 0 }}
         >
           Crafting design systems, enhancing workflows with AI, and building digital products people love. Where design meets code. Based in Barcelona.

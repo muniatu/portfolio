@@ -15,7 +15,7 @@ export default function AboutPage() {
           {/* Left — Title + decorative element */}
           <div>
             <ScrollReveal>
-              <h1 className="font-display text-6xl md:text-8xl tracking-tighter">
+              <h1 className="font-display text-[clamp(3rem,8vw,6rem)] tracking-tighter">
                 About
               </h1>
             </ScrollReveal>

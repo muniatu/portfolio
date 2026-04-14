@@ -99,7 +99,7 @@ export default function ContactSection() {
       <div className="mb-20 md:mb-28 overflow-hidden py-4">
         <div
           ref={track1Ref}
-          className="font-display text-5xl md:text-9xl lg:text-[12rem] tracking-tighter text-white whitespace-nowrap leading-normal"
+          className="font-display text-8xl md:text-9xl lg:text-[12rem] tracking-tighter text-white whitespace-nowrap leading-normal"
         >
           {marqueeText}
         </div>

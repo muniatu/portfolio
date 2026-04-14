@@ -10,7 +10,7 @@ export default function PhotographyPage() {
   return (
     <main className="min-h-screen pt-32 px-8 pb-24">
       <ScrollReveal>
-        <h1 className="font-display text-6xl md:text-8xl tracking-tighter mb-20">
+        <h1 className="font-display text-[clamp(3rem,8vw,6rem)] tracking-tighter mb-20">
           Photography
         </h1>
       </ScrollReveal>

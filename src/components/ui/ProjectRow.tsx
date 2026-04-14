@@ -139,14 +139,14 @@ export default function ProjectRow({
         {/* Title */}
         <h3
           ref={titleRef}
-          className="font-display text-4xl md:text-5xl lg:text-7xl tracking-tighter leading-[0.85] transition-none mb-4"
+          className="font-display text-[clamp(2rem,5.5vw,4.5rem)] tracking-tighter leading-[0.85] transition-none mb-4"
           style={{ opacity: 0, willChange: "transform" }}
         >
           {title}
         </h3>
 
         {/* Description */}
-        <p ref={descRef} className="text-sm md:text-base text-white/40 max-w-xl leading-relaxed" style={{ opacity: 0 }}>
+        <p ref={descRef} className="text-sm md:text-base text-white/40 md:max-w-xl leading-relaxed" style={{ opacity: 0 }}>
           {description}
         </p>
       </div>

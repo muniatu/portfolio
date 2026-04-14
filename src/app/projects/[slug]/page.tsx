@@ -63,7 +63,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             from={{ opacity: 0, y: 40 }}
             to={{ opacity: 1, y: 0, duration: 1, ease: "power3.out" }}
           >
-            <h1 className="font-display text-5xl md:text-7xl tracking-tighter leading-[0.95] mb-6">
+            <h1 className="font-display text-[clamp(2.5rem,7vw,5rem)] tracking-tighter leading-[0.95] mb-6">
               {frontmatter.title}
             </h1>
           </ScrollReveal>

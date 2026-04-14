@@ -189,7 +189,7 @@ export default function TeachingSection() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20 md:mb-28">
           <h2
             ref={titleRef}
-            className="font-display text-5xl md:text-7xl lg:text-[7rem] tracking-tighter leading-[0.85]"
+            className="font-display text-[clamp(1.8rem,10vw,7rem)] tracking-tighter leading-[0.85] w-full"
             style={{ opacity: 0 }}
           >
             Associate professor<br /><span className="italic">&amp; design lecturer</span>

@@ -80,15 +80,13 @@ float scene(vec2 uv) {
   float aspect = uResolution.x / uResolution.y;
   vec2 ringCenter = vec2(0.5) + (uMouse - 0.5) * MOUSE_INFLUENCE;
 
-  // Scale ring to fill viewport regardless of aspect ratio
-  float ringScale = aspect < 1.0 ? 1.0 / aspect * 0.6 : 1.0;
   vec2 ruv = uv * vec2(aspect, 1.0);
   vec2 rc = ringCenter * vec2(aspect, 1.0);
   vec2 skew = vec2(RING_SKEW_X, RING_SKEW_Y) * 2.0;
   ruv = rot(RING_ROTATION * TWO_PI) * ruv * skew;
   rc = rot(RING_ROTATION * TWO_PI) * rc * skew;
   vec2 p = ruv - rc;
-  float r = uRadius * 0.4 * ringScale;
+  float r = uRadius * 0.4;
   float sdf = abs(length(p) - r) - r * RING_THICKNESS;
   float glow = 0.5 / (1.0 - smoothstep(0.12, 0.01, abs(sdf) + 0.02));
   float ring = glow * pow(max(0.0, 1.0 - abs(sdf)), 3.0) * RING_INTENSITY;
@@ -112,9 +110,11 @@ void main() {
   vec2 uv = vUv;
   float aspect = uResolution.x / uResolution.y;
 
-  // Normalize so noise density is consistent regardless of aspect ratio
-  float minAspect = min(aspect, 1.0 / aspect);
-  vec2 st = (uv - 0.5) * vec2(aspect, 1.0) * NOISE_SCALE * (1.0 / max(minAspect, 0.5));
+  // On portrait viewports, zoom out so more of the effect is visible
+  float zoom = aspect < 1.0 ? 1.5 / aspect : 1.0;
+  uv = (uv - 0.5) * zoom + 0.5;
+
+  vec2 st = (uv - 0.5) * vec2(aspect, 1.0) * NOISE_SCALE;
   st = rot(0.0054 * -TWO_PI) * st;
   float nX = perlin(vec3(st * 0.5, uTime * NOISE_SPEED));
   float nY = perlin(vec3((st + 4.37) * 0.5, uTime * NOISE_SPEED));

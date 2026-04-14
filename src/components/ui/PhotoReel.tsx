@@ -147,10 +147,10 @@ export default function PhotoReel({ photos, maxPhotos = 20 }: PhotoReelProps) {
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <div ref={textRef} className="absolute bottom-8 md:bottom-16 left-6 md:left-16 z-20 right-6 md:right-auto">
-          <h2 className="font-display text-3xl md:text-7xl lg:text-[7rem] tracking-tighter leading-[0.85] mb-4 md:mb-6" style={{ opacity: 0 }}>
+          <h2 className="font-display text-[clamp(2rem,11.5vw,7rem)] tracking-tighter leading-[0.85] mb-4 md:mb-6 w-full" style={{ opacity: 0 }}>
             My life journey<br /><span className="italic">through a lens</span>
           </h2>
-          <p className="text-white/30 text-xs md:text-sm leading-relaxed mb-6 max-w-xs" style={{ opacity: 0 }}>
+          <p className="text-white/30 text-xs md:text-sm leading-relaxed mb-6" style={{ opacity: 0 }}>
             I love photography and never leave the house without a camera. It helps me see the world from a different perspective.
           </p>
           <Link

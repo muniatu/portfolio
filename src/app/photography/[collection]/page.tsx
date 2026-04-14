@@ -42,7 +42,7 @@ export default async function CollectionPage({ params }: { params: Params }) {
         </Link>
       </ScrollReveal>
       <ScrollReveal>
-        <h1 className="font-display text-6xl md:text-8xl tracking-tighter mb-4">
+        <h1 className="font-display text-[clamp(3rem,8vw,6rem)] tracking-tighter mb-4">
           {collection.title}
         </h1>
       </ScrollReveal>
