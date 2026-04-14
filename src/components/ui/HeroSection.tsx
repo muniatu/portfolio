@@ -71,7 +71,7 @@ export default function HeroSection() {
         <TextReveal
           text="Senior Product Designer,"
           tag="h2"
-          className="font-display text-4xl md:text-[6rem] leading-[0.9] tracking-tighter"
+          className="font-display text-3xl md:text-[6rem] leading-[0.9] tracking-tighter"
           delay={0.3}
         />
         <TextReveal
@@ -82,7 +82,7 @@ export default function HeroSection() {
         />
         <p
           ref={subtitleRef}
-          className="text-lg text-white/40 mt-8 leading-relaxed whitespace-nowrap"
+          className="text-sm md:text-lg text-white/40 mt-8 leading-relaxed max-w-xl"
           style={{ opacity: 0 }}
         >
           Crafting design systems, enhancing workflows with AI, and building digital products people love. Where design meets code. Based in Barcelona.

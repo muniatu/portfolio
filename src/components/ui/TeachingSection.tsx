@@ -198,7 +198,7 @@ export default function TeachingSection() {
 
         {/* 4-column: description + 3 schools */}
         <div className="h-px bg-white/[0.06] mb-10" />
-        <div className="grid grid-cols-1 md:grid-cols-[30%_repeat(4,1fr)] gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-[30%_repeat(4,1fr)] gap-8 md:gap-20">
           <div className="md:pr-24">
             <p className="font-display italic text-white/70 text-base md:text-lg leading-relaxed tracking-normal mb-6">
               Teaching started as a way to give back, but it quickly became one of the most rewarding parts of my design journey. 

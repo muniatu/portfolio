@@ -56,7 +56,7 @@ function EmailLink() {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
-      <span className="font-display text-3xl md:text-5xl lg:text-6xl tracking-tight text-white/90 group-hover:text-white transition-colors duration-500 inline-flex">
+      <span className="font-display text-xl md:text-5xl lg:text-6xl tracking-tight text-white/90 group-hover:text-white transition-colors duration-500 inline-flex flex-wrap justify-center">
         {chars.map((char, i) => (
           <span
             key={i}
@@ -99,7 +99,7 @@ export default function ContactSection() {
       <div className="mb-20 md:mb-28 overflow-hidden py-4">
         <div
           ref={track1Ref}
-          className="font-display text-7xl md:text-9xl lg:text-[12rem] tracking-tighter text-white whitespace-nowrap leading-normal"
+          className="font-display text-5xl md:text-9xl lg:text-[12rem] tracking-tighter text-white whitespace-nowrap leading-normal"
         >
           {marqueeText}
         </div>
@@ -111,10 +111,10 @@ export default function ContactSection() {
           Get in touch
         </p>
         <EmailLink />
-        <div className="flex justify-center gap-8 mt-8">
-          <a href="https://www.linkedin.com/in/adria-compte-product-designer/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors duration-300">LinkedIn</a>
-          <a href="https://www.instagram.com/adria_compte/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors duration-300">Instagram</a>
-          <a href="https://github.com/muniatu" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors duration-300">GitHub</a>
+        <div className="flex justify-center gap-6 mt-8">
+          <a href="https://www.linkedin.com/in/adria-compte-product-designer/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors duration-300 py-2 px-1">LinkedIn</a>
+          <a href="https://www.instagram.com/adria_compte/" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors duration-300 py-2 px-1">Instagram</a>
+          <a href="https://github.com/muniatu" target="_blank" rel="noopener noreferrer" className="text-sm text-white/50 hover:text-white transition-colors duration-300 py-2 px-1">GitHub</a>
         </div>
       </div>
     </section>

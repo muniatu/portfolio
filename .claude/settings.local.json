@@ -59,7 +59,18 @@
       "Bash(curl -sL -o public/images/projects/flapi-mas/flapimas-screen-1.jpg \"https://res.cloudinary.com/muniatu/image/upload/v1587394168/flapimas/flapimas-screen-1.jpg\")",
       "Bash(curl -sL -o public/images/projects/flapi-mas/flapimas-screen-2.jpg \"https://res.cloudinary.com/muniatu/image/upload/v1587394168/flapimas/flapimas-screen-2.jpg\")",
       "Bash(curl -sL -o public/images/projects/flapi-mas/flapimas-screen-3.jpg \"https://res.cloudinary.com/muniatu/image/upload/v1587394168/flapimas/flapimas-screen-3.jpg\")",
-      "Bash(curl -sL -o public/images/projects/flapi-mas/flapimas-screen-4.jpg \"https://res.cloudinary.com/muniatu/image/upload/v1587394168/flapimas/flapimas-screen-4.jpg\")"
+      "Bash(curl -sL -o public/images/projects/flapi-mas/flapimas-screen-4.jpg \"https://res.cloudinary.com/muniatu/image/upload/v1587394168/flapimas/flapimas-screen-4.jpg\")",
+      "Bash(curl -sI \"https://res.cloudinary.com/muniatu/image/upload/v1587393395/flapimas/flapimas-optimal.gif\")",
+      "Bash(curl -sL -o public/images/projects/flapi-mas/flapimas-optimal.gif \"https://res.cloudinary.com/muniatu/image/upload/v1587393395/flapimas/flapimas-optimal.gif\")",
+      "Bash(curl -sL -o public/images/projects/flapi-mas/phone-mockup.png \"https://res.cloudinary.com/muniatu/image/upload/v1645571633/phone-mockup.png\")",
+      "Bash(curl -sL -o public/images/projects/flapi-mas/gplay-button.png \"https://res.cloudinary.com/muniatu/image/upload/v1587392344/gplay-button.png\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const {imageSize}=require\\(''image-size''\\); const b=fs.readFileSync\\(''public/images/projects/tokoro/fredoka.png''\\); const d=imageSize\\(new Uint8Array\\(b\\)\\); console.log\\(d.width+''x''+d.height\\)\")",
+      "Bash(grep -o \"\"width\"\":[0-9]*,\"\"height\"\":[0-9]* .next/server/app/projects/[slug]/page.js)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(taskkill /PID 263264 /F)",
+      "Bash(tasklist)",
+      "Bash(taskkill //PID 263264 //F)",
+      "Bash(npx next:*)"
     ]
   }
 }
