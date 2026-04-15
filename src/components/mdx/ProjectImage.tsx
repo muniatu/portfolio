@@ -6,9 +6,10 @@ import { imageSize } from "image-size";
 type ProjectImageProps = {
   src: string;
   alt: string;
+  className?: string;
 };
 
-export default function ProjectImage({ src, alt }: ProjectImageProps) {
+export default function ProjectImage({ src, alt, className = "my-12" }: ProjectImageProps) {
   const filePath = path.join(process.cwd(), "public", src);
   let width = 900;
   let height = 600;
@@ -25,7 +26,7 @@ export default function ProjectImage({ src, alt }: ProjectImageProps) {
   }
 
   return (
-    <figure className="my-12 flex justify-center">
+    <figure className={`flex justify-center ${className}`}>
       <Image
         src={src}
         alt={alt}

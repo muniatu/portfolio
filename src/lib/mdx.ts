@@ -10,6 +10,7 @@ export type ProjectFrontmatter = {
   date: string;
   tags: string[];
   cover: string;
+  coverCaption?: string;
   color: string;
   featured: boolean;
   slug: string;

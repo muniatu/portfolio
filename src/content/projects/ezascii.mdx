@@ -1,0 +1,73 @@
+---
+title: "EZASCII"
+description: "Building a full ASCII tools platform from scratch, and letting AI do most of the heavy lifting"
+date: "2025-12"
+tags: ["design", "development"]
+cover: "/images/projects/ezascii/banner.jpg"
+coverCaption: 'Surprised Pikachu ASCII art generated with the <a href="https://ezascii.com/image-to-ascii" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">image to ASCII converter</a> from EZASCII'
+color: "#0a0a0a"
+featured: true
+---
+
+I was trying to convert a video to ASCII art online. Sounds like it should be easy, there are tons of ASCII tools out there. But every site I found was either broken, ugly, or felt like it hadn't been updated since 2010. The kind of websites where you're genuinely unsure if they'll give your computer a virus.
+
+So I did what any reasonable person would do: instead of just converting one video, I decided to build an entire platform.
+
+## The Idea
+
+The ASCII tools space online is surprisingly large. Millions of people search for things like "ascii art copy paste", "text to ascii", "kaomoji", or "lenny face" every month. But the websites serving that traffic are, frankly, terrible. Outdated designs, poor mobile experience, slow, cluttered with ads in the worst possible way.
+
+I saw an opportunity to build something better. A single platform that covers the full spectrum of ASCII tools with a modern, clean experience. Not just a converter, but a proper destination: converters, symbol libraries, emoji collections, an art gallery, tutorials, the works.
+
+The site is live at [ezascii.com](https://ezascii.com).
+
+## What I Built
+
+EZASCII ended up being much bigger than the video converter I originally wanted. The platform includes:
+
+- **[Image to ASCII converter](https://ezascii.com/image-to-ascii)**: Upload any image, tweak settings, get ASCII art. All processing happens client-side using Canvas API and Web Workers, so there's zero server cost regardless of traffic.
+- **[Video to ASCII](https://ezascii.com/video-to-ascii)**: The thing that started it all. Real-time video-to-ASCII conversion in the browser.
+- **[Webcam to ASCII](https://ezascii.com/webcam-to-ascii)**: Live webcam feed converted to ASCII in real time. This one is just fun.
+- **[Text to ASCII art](https://ezascii.com/text-to-ascii-art)**: Type text, pick a font, get large ASCII art letters. Classic.
+- **[ASCII art font generator](https://ezascii.com/ascii-art-font)**: Similar but with more typographic control.
+- **[Gamertag generator](https://ezascii.com/gamertag-generator)**: Decorated text with symbols for gaming profiles.
+- **[ASCII character reference](https://ezascii.com/ascii-characters)**: Full 0–255 table with individual pages for each character, complete with history and usage examples.
+- **[Emoji library](https://ezascii.com/emojis)**: Categorized Unicode emojis with one-tap copy.
+- **[ASCII emojis](https://ezascii.com/ascii-emojis)**: Kaomoji, lenny faces, table flips, shrug gestures. All the classics, organized and searchable.
+- **[Symbol library](https://ezascii.com/symbols)**: Unicode symbols by category (arrows, currency, math, etc.).
+- **[ASCII art gallery](https://ezascii.com/ascii-art)**: Curated collection of ASCII art pieces.
+- **[Tutorials](https://ezascii.com/tutorials)** and **[blog](https://ezascii.com/blog)**: Meaningful content explaining how to use ASCII art tools and insights about the Unicode world.
+
+Every single element on the site has one-tap copy. That was a non-negotiable from day one. If you're on mobile looking for a shrug emoji, you want to tap it and paste it somewhere. Not select text, long press, copy, hope you got the right characters.
+
+## The Tech
+
+The stack is Next.js 15 with TypeScript, Tailwind CSS, and Supabase for the database. The converters are entirely client-side: Canvas API reads pixels, Web Workers crunch the math, and the result renders without ever hitting a server. This was a deliberate choice: if the site scales to hundreds of thousands of visitors, conversion processing costs exactly zero.
+
+The design follows a dark console aesthetic. Black background, monospaced elements where it makes sense, minimal color. It fits the ASCII theme and differentiates from every competitor that looks like a GeoCities page.
+
+SEO is baked into everything. Every page has proper metadata, structured data, canonical URLs, and dynamic OG images. The sitemap covers thousands of individual character and emoji pages. When you're competing against sites with 15+ years of domain authority, you need every edge you can get.
+
+## Agentic Development
+
+This project has been my playground for agentic product development, building a real product with AI coding tools doing most of the implementation work.
+
+The workflow looks something like this: I decide what to build, define the requirements and the UX, and then work with AI to implement it. The speed difference is dramatic. Features that would take days to build solo get done in hours. Entire page templates, database schemas, API routes, SEO optimizations. The velocity is genuinely surprising.
+
+But it's not magic. You still need to know how humans will interact with your product. The AI doesn't have taste, doesn't understand your users, and will happily build something technically correct but experientially wrong. The human role shifts from writing code to directing, reviewing, and making judgment calls. Which is, honestly, closer to what product development should be anyway.
+
+It's also been a great way to understand the limits. AI is excellent at generating boilerplate, implementing well-defined patterns, and handling the tedious parts. It struggles with novel interactions, nuanced design decisions, and some of the "whys" behind product choices. The sweet spot is somewhere in between: you bring the vision and quality bar, the AI brings the velocity.
+
+## Current State
+
+EZASCII is live and traffic is steadily growing, though it's still early days. SEO is a long game, especially when competing against established domains. The content library keeps expanding, new features ship regularly, and the numbers trend in the right direction.
+
+I'm not going to pretend the figures are impressive yet, they're not. But building a product that actually gets indexed, ranks for real keywords, and serves real users has been more educational than any side project I've done before. There's something different about optimizing for actual humans finding you through Google versus showing a prototype to friends.
+
+## What I've Learned
+
+Building EZASCII has been a crash course in several things at once: SEO strategy, content-driven growth, client-side performance optimization, and working with AI tools at a product level rather than just for code snippets.
+
+The biggest takeaway is that the barrier to building a real, live product has genuinely dropped. Not in a "no-code" superficial way, but in a "one person can build and ship something that competes with established players" way. The tools are good enough now that the bottleneck is ideas, taste, and persistence, not implementation capacity.
+
+Whether EZASCII becomes a meaningful traffic source or stays a learning exercise, the process of building it has already been worth it.

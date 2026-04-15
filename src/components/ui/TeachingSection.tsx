@@ -17,12 +17,16 @@ const schools = [
   {
     name: "@LABASAD \u2014 Barcelona School of Arts and Design",
     href: "https://www.labasad.com/master/master-online-en-diseno-de-producto/",
-    subjects: ["Associate professor of Wireframing and prototyping with AI for the Online Master in Digital Product Design & AI."],
+    subjects: [
+      "Associate professor of Wireframing and prototyping with AI for the Online Master in Digital Product Design & AI.",
+    ],
   },
   {
     name: "@Barcelona Code School",
     href: "https://barcelonacodeschool.com/ux-design-bootcamp-in-barcelona-code-school/",
-    subjects: ["Agile methodologies and Lean UX lecturer for the UX/UI Design Bootcamp."],
+    subjects: [
+      "Agile methodologies and Lean UX lecturer for the UX/UI Design Bootcamp.",
+    ],
   },
   {
     name: "@Nuclio Digital School",
@@ -96,7 +100,9 @@ const SchoolCard = forwardRef<
               return (
                 <span
                   key={idx}
-                  ref={(el) => { lettersRef.current[idx] = el; }}
+                  ref={(el) => {
+                    lettersRef.current[idx] = el;
+                  }}
                   className="inline-block transition-none"
                   style={{ willChange: "transform" }}
                 >
@@ -110,12 +116,14 @@ const SchoolCard = forwardRef<
               els.push(
                 <span
                   key={`space-${spaceIdx}`}
-                  ref={(el) => { lettersRef.current[spaceIdx] = el; }}
+                  ref={(el) => {
+                    lettersRef.current[spaceIdx] = el;
+                  }}
                   className="inline-block transition-none"
                   style={{ willChange: "transform" }}
                 >
                   {"\u00A0"}
-                </span>
+                </span>,
               );
             }
             return (
@@ -152,29 +160,32 @@ export default function TeachingSection() {
 
       // Title
       if (titleRef.current) {
-        tl.fromTo(titleRef.current,
+        tl.fromTo(
+          titleRef.current,
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-          0
+          0,
         );
       }
 
       // Description
       if (descRef.current) {
-        tl.fromTo(descRef.current,
+        tl.fromTo(
+          descRef.current,
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-          0.15
+          0.15,
         );
       }
 
       // School cards stagger
       schoolRefs.current.forEach((el, i) => {
         if (!el) return;
-        tl.fromTo(el,
+        tl.fromTo(
+          el,
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-          0.3 + i * 0.12
+          0.3 + i * 0.12,
         );
       });
     }, section);
@@ -183,40 +194,55 @@ export default function TeachingSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[100dvh] flex flex-col justify-center bg-[rgb(6,6,6)] overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative min-h-[100dvh] flex flex-col justify-center bg-[rgb(6,6,6)] overflow-hidden"
+    >
       <div className="px-8 md:px-16 py-24 md:py-32">
         {/* Title + description — full width row */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20 md:mb-28">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20 md:mb-24">
           <h2
             ref={titleRef}
             className="font-display text-[clamp(1.8rem,10vw,7rem)] tracking-tighter leading-[0.85] w-full"
             style={{ opacity: 0 }}
           >
-            Associate professor<br /><span className="italic">&amp; design lecturer</span>
+            Associate professor
+            <br />
+            <span className="italic">&amp; design lecturer</span>
           </h2>
         </div>
 
         {/* 4-column: description + 3 schools */}
-        <div className="h-px bg-white/[0.06] mb-10" />
         <div className="grid grid-cols-1 md:grid-cols-[30%_repeat(4,1fr)] gap-8 md:gap-20">
-          <div className="md:pr-24">
-            <p className="font-display italic text-white/70 text-base md:text-lg leading-relaxed tracking-normal mb-6">
-              Teaching started as a way to give back, but it quickly became one of the most rewarding parts of my design journey. 
-              Articulating things you take for granted, and seeing someone facing them for the first time sharpens your own perspective. 
+          <div>
+            <p className="font-regular text-white/70 text-base md:text-lg leading-relaxed tracking-normal mb-6">
+              I started teaching as a way to give back and push myself to
+              experience new things. It quickly became one of the most rewarding
+              parts of my design journey. Articulating things you take for
+              granted, and seeing someone facing them for the first time
+              sharpens your own perspective.
             </p>
-            <p className="font-display italic text-white/70 text-base md:text-lg leading-relaxed tracking-normal mb-6">
-              The magic happens when a student realizes they have the power to build whatever they can imagine. 
-              The tools change every year, but <b className="text-white/90">that moment never gets old</b>. I try to stay up-to-date so they can learn the fundamentals and take a peek into the future.
+            <p className="font-regular text-white/70 text-base md:text-lg leading-relaxed tracking-normal mb-6">
+              The magic happens when a student realizes they have the power to
+              build whatever they can imagine. The tools change every year, but{" "}
+              <b className="text-white/90">that moment never gets old</b>. I try
+              to stay up-to-date so they can learn the fundamentals and take a
+              peek into the future.
             </p>
             <p className="text-white/40 text-sm leading-relaxed">
-              From user flows and paper prototypes to high-fidelity solutions built with AI, helping students to jump into code without being afraid. The classroom is where theory meets craft and things start to click.
+              From user flows and paper prototypes to high-fidelity solutions
+              built with AI, helping students to jump into code without being
+              afraid. The classroom is where theory meets craft and things start
+              to click.
             </p>
           </div>
           {schools.map((school, i) => (
             <SchoolCard
               key={school.name}
               school={school}
-              ref={(el) => { schoolRefs.current[i] = el; }}
+              ref={(el) => {
+                schoolRefs.current[i] = el;
+              }}
             />
           ))}
         </div>

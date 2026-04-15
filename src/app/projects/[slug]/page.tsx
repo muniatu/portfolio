@@ -94,16 +94,23 @@ export default async function ProjectPage({ params }: { params: Params }) {
             to={{ opacity: 1, y: 0, scale: 1, duration: 1.2, ease: "power3.out" }}
             className="mb-16"
           >
-            <div className="rounded-[1.5rem] p-1 bg-white/[0.03] border border-white/[0.06]">
-              <div className="relative aspect-video overflow-hidden rounded-[calc(1.5rem-4px)]">
+            <div>
+              <div className="relative overflow-hidden rounded-lg">
                 <Image
                   src={frontmatter.cover}
                   alt={frontmatter.title}
-                  fill
-                  className="object-cover"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="w-full h-auto"
                   priority
                 />
               </div>
+              {frontmatter.coverCaption && (
+                <p className="mt-3 text-sm text-white/30 text-center"
+                  dangerouslySetInnerHTML={{ __html: frontmatter.coverCaption }}
+                />
+              )}
             </div>
           </ScrollReveal>
         )}
