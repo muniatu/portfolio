@@ -70,7 +70,8 @@
       "Bash(taskkill /PID 263264 /F)",
       "Bash(tasklist)",
       "Bash(taskkill //PID 263264 //F)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }
