@@ -169,7 +169,7 @@ export default function PhotoReel({ photos, maxPhotos = 20 }: PhotoReelProps) {
           {reelPhotos.map((photo, i) => (
             <div
               key={`${photo.src}-${i}`}
-              className="absolute shadow-[0_8px_40px_rgba(0,0,0,0.4)] bg-white p-1.5"
+              className="absolute shadow-[0_8px_40px_rgba(0,0,0,0.4)]"
               style={{ display: "none", willChange: "transform" }}
             >
               <div className="relative w-full h-full">
