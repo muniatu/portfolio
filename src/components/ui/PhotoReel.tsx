@@ -178,8 +178,8 @@ export default function PhotoReel({ photos, maxPhotos = 20 }: PhotoReelProps) {
                   alt={photo.alt}
                   fill
                   className="object-cover"
-                  sizes="200px"
-                  loading="lazy"
+                  sizes="400px"
+                  fetchPriority="low"
                 />
               </div>
             </div>

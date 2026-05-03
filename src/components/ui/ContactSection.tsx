@@ -94,7 +94,7 @@ export default function ContactSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+    <section data-canvas-show className="relative min-h-screen flex flex-col justify-center overflow-hidden">
       {/* Marquee */}
       <div className="mb-20 md:mb-28 overflow-hidden py-4">
         <div

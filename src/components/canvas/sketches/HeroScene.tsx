@@ -142,7 +142,7 @@ void main() {
   float dispB = pow(distortVec.b, distPow) * CHROMA_AMOUNT;
 
   vec3 color = vec3(0.0);
-  const int STEPS = 10;
+  const int STEPS = 6;
   float inv = 1.0 / float(STEPS);
   for (int i = 1; i <= STEPS; i++) {
     float t = float(i) * inv;
@@ -165,6 +165,7 @@ export default function HeroScene() {
   const meshRef = useRef<Mesh>(null);
   const { size } = useThree();
   const mouseSmooth = useRef(new Vector2(0.5, 0.5));
+  const mouseTarget = useRef(new Vector2(0.5, 0.5));
 
   const material = useMemo(() => {
     return new ShaderMaterial({
@@ -184,12 +185,10 @@ export default function HeroScene() {
   useFrame(({ pointer, clock }) => {
     if (!material) return;
     material.uniforms.uTime.value = clock.elapsedTime;
-    mouseSmooth.current.lerp(
-      new Vector2((pointer.x + 1) * 0.5, (pointer.y + 1) * 0.5),
-      0.03
-    );
+    mouseTarget.current.set((pointer.x + 1) * 0.5, (pointer.y + 1) * 0.5);
+    mouseSmooth.current.lerp(mouseTarget.current, 0.03);
     material.uniforms.uMouse.value.copy(mouseSmooth.current);
-    material.uniforms.uResolution.value.set(size.width * 2, size.height * 2);
+    material.uniforms.uResolution.value.set(size.width, size.height);
 
     const t = Math.min(1, clock.elapsedTime / 4);
     material.uniforms.uRadius.value = (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)) * 0.85;
