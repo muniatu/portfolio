@@ -65,6 +65,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
+      data-canvas-show
       className="relative min-h-[100dvh] flex items-center md:items-end px-5 md:px-8 pb-0 md:pb-16"
     >
       <div ref={contentRef} className="relative z-10 pb-20 w-full max-w-5xl">
