@@ -1,0 +1,62 @@
+---
+title: "The purple ones"
+description: "What happened when we built a Nespresso product list around the way users actually describe their coffee, by color."
+date: "2025-04"
+tags: ["design", "research"]
+cover: "/images/projects/nespresso-color-filter/cover.jpg"
+color: "#5C3D8C"
+featured: true
+---
+
+<InterviewBubbles
+  question="What’s your favorite coffee?"
+  answers='[{"text":"The golden one.","colorWord":"golden","color":"#D4A437"},{"text":"The purple ones.","colorWord":"purple","color":"#5C3D8C"},{"text":"Green. Definitely green.","colorWord":"green","color":"#1F8A4C"}]'
+/>
+
+This pattern emerged interview after interview. We would ask users about their favorite coffee, and they rarely remembered the name. **They referred to it by color instead.** We could see them squint, think for a bit, and go: *"The purple ones."*
+
+Later, in usability tests, the pattern held. We would ask users to add the coffee they usually buy to the basket, and **they wouldn't read the names at all**. They scanned the product list by color and tapped.
+
+## Mental model mismatch
+
+Marketing teams often name products without the user in mind. Nespresso's capsule names are usually too abstract and fancy to become memorable.
+
+Users, on the other hand, will always go the simpler route. In this case, color. Mental models that only show up when you actually do the research.
+
+People don't want to spend time remembering dense brand naming structures. They just want to enjoy the coffee they like and find it as fast as possible, so **it's our job to make it easier for them**.
+
+## The prototype
+
+We had a chance to test something fresh during a one-week design sprint. We pulled together a list of hypotheses and observations from existing user data and let those drive the design. The color thing was the loudest signal, but not the only one.
+
+{/* INTERACTIVE PROTOTYPE GOES HERE: phone mockup, touch-interactive, before/after toggle */}
+
+One observation shaped a lot of the thinking: Nespresso barely gets new users. The people on the website are returning customers, and they almost always buy the same coffees. New capsules get tried mostly when free samples arrive with an order, not when someone discovers them on the product list.
+
+If that's the actual behavior, the product card is doing the wrong job. It's pitching new flavors to people who aren't browsing for new flavors. So we stripped it down. Names, intensity scores, descriptions: all gone or pushed into a secondary view. What's left is mostly the capsule itself, in its color.
+
+Then the color filter, sitting at the top of the grid alongside the existing filters. Tap purple, you see purples. Tap purple and brown, you get both. The interaction is unremarkable on purpose. The point isn't the filter as a feature, it's that the page now speaks the language we kept hearing in interviews.
+
+## What we heard
+
+We tested it unmoderated with six users. One task: *"Find the coffee you usually buy."*
+
+Some opened the page, scanned for a second, and tapped, no narration. Others noticed the color cue out loud:
+
+> "Oh, I can see all the colors straight away. That's cool."
+>
+> "I always buy the purple ones, so this is faster."
+
+A handful of users had no reaction at all. They found their capsule, moved on, didn't comment on the change. Which is its own kind of finding: for them the color cue was already implicit, and surfacing it explicitly just matched what they'd been doing on their own.
+
+It wasn't a quantitative study. Six users, one task, a qualitative read. The idea is small enough that a small test was the right shape.
+
+## What happened next
+
+The redesign that's in the pipeline includes a color filter on the product list. Not the more aggressive version we prototyped (color is an additional filter alongside the existing ones, not the primary navigation), but it's **the first time the website will have a way to filter by color**, and it came directly out of those six conversations.
+
+---
+
+It's a small feature. More of a quirk than a business goal, there's no revenue model hiding in a color swatch. But the team chose, in a redesign with a long list of bigger fights, to make room for the way users were already talking about the product. That's a more useful kind of win than the size suggests.
+
+The most useful finding is usually the one nobody briefed you to look for. People had already solved the navigation problem in their own heads. The work was to listen carefully enough to notice, and to stop trying to teach them our names.
