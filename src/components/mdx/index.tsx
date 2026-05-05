@@ -11,6 +11,7 @@ import NespressoOatlyVideo from "../projects/nespresso/NespressoOatlyVideo";
 import NespressoRecycling from "../projects/nespresso/NespressoRecycling";
 import NespressoBoutique from "../projects/nespresso/NespressoBoutique";
 import NespressoFooter from "../projects/nespresso/NespressoFooter";
+import NespressoMoodBubbles from "../projects/nespresso/NespressoMoodBubbles";
 
 export const mdxComponents: MDXComponents = {
   ProjectImage,
@@ -25,4 +26,5 @@ export const mdxComponents: MDXComponents = {
   NespressoRecycling,
   NespressoBoutique,
   NespressoFooter,
+  NespressoMoodBubbles,
 };
