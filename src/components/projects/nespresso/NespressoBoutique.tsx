@@ -33,7 +33,7 @@ export default function NespressoBoutique({
         />
 
         <div className="absolute bottom-4 left-3 text-white">
-          <div className="text-[12px] font-normal uppercase tracking-wider opacity-90">
+          <div className="text-[12px] font-normal opacity-90">
             {eyebrow}
           </div>
           <div className="text-[22px] font-normal leading-tight">{title}</div>

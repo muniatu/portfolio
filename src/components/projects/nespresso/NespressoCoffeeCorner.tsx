@@ -180,7 +180,7 @@ export default function NespressoCoffeeCorner({
             }}
           />
           <div className="absolute inset-x-0 bottom-4 px-3 text-white">
-            <div className="text-[12px] font-normal uppercase tracking-wider opacity-90">
+            <div className="text-[12px] font-normal opacity-90">
               {mainEyebrow}
             </div>
             <div className="text-[22px] font-normal leading-snug">
@@ -224,7 +224,7 @@ export default function NespressoCoffeeCorner({
         />
         <div className="absolute inset-x-0 bottom-4 flex items-end justify-between px-3 text-white">
           <div>
-            <div className="text-[12px] font-normal uppercase tracking-wider opacity-90">
+            <div className="text-[12px] font-normal opacity-90">
               {recipeEyebrow}
             </div>
             <div className="text-[22px] font-normal leading-snug">
