@@ -1,0 +1,194 @@
+[
+  {
+    "id": 1,
+    "filename": "001-Frosted  Caramel Nuts.png",
+    "name": "Frosted Caramel Nuts",
+    "color": "#FDF9F4"
+  },
+  {
+    "id": 2,
+    "filename": "002-Vanilla Custard.png",
+    "name": "Vanilla Custard",
+    "color": "#FDF8EC"
+  },
+  {
+    "id": 3,
+    "filename": "003-Café Joyeux.png",
+    "name": "Café Joyeux",
+    "color": "#FFF3DC"
+  },
+  {
+    "id": 4,
+    "filename": "004-Solelio.png",
+    "name": "Solelio",
+    "color": "#FFF4D1"
+  },
+  {
+    "id": 5,
+    "filename": "005-Melozio.png",
+    "name": "Melozio",
+    "color": "#FFEBD6"
+  },
+  {
+    "id": 6,
+    "filename": "006-Golden Caramel.png",
+    "name": "Golden Caramel",
+    "color": "#FEF6EB"
+  },
+  {
+    "id": 7,
+    "filename": "007-Maple Pecan.png",
+    "name": "Maple Pecan",
+    "color": "#FFEAE1"
+  },
+  {
+    "id": 8,
+    "filename": "008-Whisky Essence.png",
+    "name": "Whisky Essence",
+    "color": "#FFEAD8"
+  },
+  {
+    "id": 9,
+    "filename": "009-Ontuoso.png",
+    "name": "Ontuoso",
+    "color": "#FFE3E3"
+  },
+  {
+    "id": 10,
+    "filename": "010-Ginseng Delight.png",
+    "name": "Ginseng Delight",
+    "color": "#FFE6E3"
+  },
+  {
+    "id": 11,
+    "filename": "011-Forest Fruit.png",
+    "name": "Forest Fruit",
+    "color": "#FFD8D9"
+  },
+  {
+    "id": 12,
+    "filename": "012-Colombia.png",
+    "name": "Colombia",
+    "color": "#FFD7E3"
+  },
+  {
+    "id": 13,
+    "filename": "013-Altissio.png",
+    "name": "Altissio",
+    "color": "#F3E7FF"
+  },
+  {
+    "id": 14,
+    "filename": "014-Altissio Decaffeinato.png",
+    "name": "Altissio Decaffeinato",
+    "color": "#F3E7FF"
+  },
+  {
+    "id": 15,
+    "filename": "015-Diavolitto.png",
+    "name": "Diavolitto",
+    "color": "#E3E8FF"
+  },
+  {
+    "id": 16,
+    "filename": "016-Café de Cuba.png",
+    "name": "Café de Cuba",
+    "color": "#DDEEFF"
+  },
+  {
+    "id": 17,
+    "filename": "017-Festive Unforgettable.png",
+    "name": "Festive Unforgettable",
+    "color": "#E9EEFF"
+  },
+  {
+    "id": 18,
+    "filename": "018-Odacio.png",
+    "name": "Odacio",
+    "color": "#DBF4FF"
+  },
+  {
+    "id": 19,
+    "filename": "019-Costa Rica.png",
+    "name": "Costa Rica",
+    "color": "#D9F2FF"
+  },
+  {
+    "id": 20,
+    "filename": "020-Blue Bottle.png",
+    "name": "Blue Bottle",
+    "color": "#E0F7FF"
+  },
+  {
+    "id": 21,
+    "filename": "021-Hawaii Kona.png",
+    "name": "Hawaii Kona",
+    "color": "#EAF9FF"
+  },
+  {
+    "id": 22,
+    "filename": "022-Peru.png",
+    "name": "Peru",
+    "color": "#F3FBE5"
+  },
+  {
+    "id": 23,
+    "filename": "023-Mexico.png",
+    "name": "Mexico",
+    "color": "#F4FCE6"
+  },
+  {
+    "id": 24,
+    "filename": "024-Peppermint.png",
+    "name": "Peppermint",
+    "color": "#F1FDF7"
+  },
+  {
+    "id": 25,
+    "filename": "025-Forest Black.png",
+    "name": "Forest Black",
+    "color": "#F2FCEE"
+  },
+  {
+    "id": 26,
+    "filename": "026-Il Caffè.png",
+    "name": "Il Caffè",
+    "color": "#F5F8F3"
+  },
+  {
+    "id": 27,
+    "filename": "027-Double Espresso Dolce.png",
+    "name": "Double Espresso Dolce",
+    "color": "#F1E6DA"
+  },
+  {
+    "id": 28,
+    "filename": "028 - Intenso.png",
+    "name": "Intenso",
+    "color": "#EFE5E2"
+  },
+  {
+    "id": 29,
+    "filename": "029-Double Espresso Chiaro.png",
+    "name": "Double Espresso Chiaro",
+    "color": "#F1E4DA"
+  },
+  {
+    "id": 30,
+    "filename": "030-Double Espresso Scuro.png",
+    "name": "Double Espresso Scuro",
+    "color": "#F6E7E0"
+  },
+  {
+    "id": 31,
+    "filename": "031-Fortado.png",
+    "name": "Fortado",
+    "color": "#E8E7E6"
+  },
+  {
+    "id": 32,
+    "filename": "032-Ristretto Classico.png",
+    "name": "Ristretto Classico",
+    "color": "#E9E9E9"
+  }
+]

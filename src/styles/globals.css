@@ -53,6 +53,20 @@ body::after {
   font-family: var(--font-display);
 }
 
+/* Nespresso PLP — page-entrance cascade for the capsule grid.
+   Tiles fade up while subtly scaling, with `backwards` fill so they
+   stay invisible during their stagger delay. */
+@keyframes rainbow-cascade {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* Nespresso prototype hotspot pulse — fades in softly instead of
    appearing at full opacity like Tailwind's built-in `ping`. */
 @keyframes nespresso-pulse {
