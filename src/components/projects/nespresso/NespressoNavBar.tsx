@@ -5,7 +5,7 @@ import { useMenu } from "./_menu-context";
 /**
  * Top navigation: burger (left), Nespresso logo (center), "Cart" (right).
  * Sticky just below the status bar. The burger toggles a shared menu
- * state (provided by NespressoFrame) which the menu overlay reads.
+ * state (provided by PrototypeShell) which the menu overlay reads.
  */
 export default function NespressoNavBar() {
   const { open, toggle } = useMenu();
@@ -18,9 +18,7 @@ export default function NespressoNavBar() {
     >
       {/* Floating pill — visible on any background */}
       <div
-        className={`flex h-12 items-center justify-between rounded-full bg-white transition-[padding] duration-300 ${
-          open ? "px-4" : "px-6"
-        }`}
+        className="flex h-12 items-center justify-between rounded-full bg-white px-4"
       >
         {/* Burger */}
         <button

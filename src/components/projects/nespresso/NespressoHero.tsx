@@ -1,6 +1,4 @@
-"use client";
-
-import { useRouter } from "./_router-context";
+import Link from "next/link";
 
 type Props = {
   /** Path to the looping hero video. Provide both mp4 and webm if available. */
@@ -26,7 +24,6 @@ export default function NespressoHero({
   title = "Welcome\nCoffee Lover",
   ctaLabel = "Shop Coffee",
 }: Props) {
-  const { navigate } = useRouter();
   return (
     <section className="relative px-4 pt-[10px]">
       <div className="relative h-[582px] w-full overflow-hidden rounded-3xl bg-stone-200">
@@ -59,9 +56,8 @@ export default function NespressoHero({
             {title}
           </h1>
 
-          <button
-            type="button"
-            onClick={() => navigate("coffee")}
+          <Link
+            href="/projects/nespresso-color-filter/coffee-plp"
             className="inline-flex h-[50px] items-center gap-2 rounded-full bg-white px-6 text-[15px] font-normal text-black shadow-lg"
           >
             <span>{ctaLabel}</span>
@@ -79,7 +75,7 @@ export default function NespressoHero({
               <path d="M5 12h14" />
               <path d="m13 6 6 6-6 6" />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

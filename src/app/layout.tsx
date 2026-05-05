@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Playfair_Display } from "next/font/google";
-import Nav from "@/components/ui/Nav";
-import Footer from "@/components/ui/Footer";
-import HeroCanvas from "@/components/ui/HeroCanvas";
-import SmoothScroll from "@/components/ui/SmoothScroll";
+import ChromeOrNaked from "@/components/ui/ChromeOrNaked";
 import "@/styles/globals.css";
 
 const geist = Geist({
@@ -105,13 +102,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SmoothScroll />
-        <HeroCanvas />
-        <Nav />
-        <div className="relative">
-          {children}
-          <Footer />
-        </div>
+        <ChromeOrNaked>{children}</ChromeOrNaked>
       </body>
     </html>
   );
