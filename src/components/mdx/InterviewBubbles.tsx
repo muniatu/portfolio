@@ -18,15 +18,18 @@ function highlight(text: string, word: string, color: string) {
       </span>
     ) : (
       <span key={i}>{part}</span>
-    )
+    ),
   );
 }
 
-export default function InterviewBubbles({ question, answers }: InterviewBubblesProps) {
+export default function InterviewBubbles({
+  question,
+  answers,
+}: InterviewBubblesProps) {
   const parsed: Answer[] = JSON.parse(answers);
 
   return (
-    <div className="my-16 flex flex-col items-center gap-0">
+    <div className="not-prose mt-12 mb-16 flex flex-col items-center gap-0">
       <p className="font-display italic text-center text-2xl md:text-4xl text-white/85 leading-none mb-6">
         “{question}”
       </p>

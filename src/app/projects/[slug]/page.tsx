@@ -47,7 +47,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
   return (
     <main className="min-h-screen pt-32 pb-24 bg-[var(--color-background)]">
       <article className="mx-auto max-w-5xl px-8">
-        <header className="mx-auto max-w-3xl mb-16">
+        <header className={`mx-auto max-w-3xl ${frontmatter.cover ? "mb-16" : "mb-8"}`}>
           <ScrollReveal>
             <Link
               href="/projects"

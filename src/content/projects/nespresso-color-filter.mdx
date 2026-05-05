@@ -1,19 +1,21 @@
 ---
 title: "The purple ones"
-description: "What happened when we built a Nespresso product list around the way users actually describe their coffee, by color."
+description: "Building the Nespresso product list around an overlooked mental model: COLOR."
 date: "2025-04"
 tags: ["design", "research"]
-cover: "/images/projects/nespresso-color-filter/cover.jpg"
+cover: ""
 color: "#5C3D8C"
 featured: true
 ---
+
+A pattern emerged interview after interview:
 
 <InterviewBubbles
   question="What’s your favorite coffee?"
   answers='[{"text":"The golden one.","colorWord":"golden","color":"#D4A437"},{"text":"The purple ones.","colorWord":"purple","color":"#5C3D8C"},{"text":"Green. Definitely green.","colorWord":"green","color":"#1F8A4C"}]'
 />
 
-This pattern emerged interview after interview. We would ask users about their favorite coffee, and they rarely remembered the name. **They referred to it by color instead.** We could see them squint, think for a bit, and go: *"The purple ones."*
+When asking users about their favorite coffee, they rarely remembered the official names. **They referred to them by color instead.** We could see them squint, think for a bit, and go: _"The purple ones."_
 
 Later, in usability tests, the pattern held. We would ask users to add the coffee they usually buy to the basket, and **they wouldn't read the names at all**. They scanned the product list by color and tapped.
 
@@ -29,7 +31,16 @@ People don't want to spend time remembering dense brand naming structures. They 
 
 We had a chance to test something fresh during a one-week design sprint. We pulled together a list of hypotheses and observations from existing user data and let those drive the design. The color thing was the loudest signal, but not the only one.
 
-{/* INTERACTIVE PROTOTYPE GOES HERE: phone mockup, touch-interactive, before/after toggle */}
+<NespressoFrame>
+  <NespressoStatusBar />
+  <NespressoNavBar />
+  <NespressoHero />
+  <NespressoCoffeeCorner />
+  <NespressoOatlyVideo />
+  <NespressoRecycling />
+  <NespressoBoutique />
+  <NespressoFooter />
+</NespressoFrame>
 
 One observation shaped a lot of the thinking: Nespresso barely gets new users. The people on the website are returning customers, and they almost always buy the same coffees. New capsules get tried mostly when free samples arrive with an order, not when someone discovers them on the product list.
 
@@ -39,7 +50,7 @@ Then the color filter, sitting at the top of the grid alongside the existing fil
 
 ## What we heard
 
-We tested it unmoderated with six users. One task: *"Find the coffee you usually buy."*
+We tested it unmoderated with six users. One task: _"Find the coffee you usually buy."_
 
 Some opened the page, scanned for a second, and tapped, no narration. Others noticed the color cue out loud:
 
