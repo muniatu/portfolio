@@ -10,7 +10,7 @@ export default function PrototypeLayout({
 }) {
   return (
     <main
-      className="min-h-screen bg-white"
+      className="min-h-screen"
       style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
     >
       {children}

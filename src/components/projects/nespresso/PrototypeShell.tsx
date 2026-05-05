@@ -5,6 +5,7 @@ import {
   useCallback,
   useEffect,
   useRef,
+  useState,
 } from "react";
 import { MenuProvider } from "./_menu-context";
 import NespressoMenu from "./NespressoMenu";
@@ -133,27 +134,49 @@ function ShellInner({ children }: { children: ReactNode }) {
 
   useEffect(() => () => cancelMomentum(), [cancelMomentum]);
 
+  // Embedded = inside the case-study iframe → fills the iframe.
+  // Standalone = direct URL visit → centered phone-like column on a dark
+  // backdrop with rounded corners + shadow on desktop, full-screen on mobile.
+  const [embedded, setEmbedded] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setEmbedded(window.self !== window.top);
+    }
+  }, []);
+
   return (
     <div
-      className="relative h-svh w-full overflow-hidden bg-white"
-      onPointerMove={onPointerMove}
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-      onClickCapture={onClickCapture}
+      className={
+        embedded
+          ? "min-h-svh"
+          : "flex min-h-svh items-stretch justify-center bg-stone-900 sm:items-center sm:p-6"
+      }
     >
       <div
-        ref={scrollRef}
-        data-lenis-prevent
-        className="relative h-full overflow-y-auto overscroll-contain"
-        style={{
-          touchAction: "pan-y",
-          scrollbarWidth: "none",
-        }}
+        className={
+          embedded
+            ? "relative h-svh w-full overflow-hidden bg-white"
+            : "relative h-svh w-full max-w-[448px] overflow-hidden bg-white sm:h-[92svh] sm:max-h-[920px] sm:rounded-[40px] sm:shadow-2xl sm:shadow-black/40"
+        }
+        onPointerMove={onPointerMove}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onClickCapture={onClickCapture}
       >
-        {children}
-      </div>
+        <div
+          ref={scrollRef}
+          data-lenis-prevent
+          className="relative h-full overflow-y-auto overscroll-contain"
+          style={{
+            touchAction: "pan-y",
+            scrollbarWidth: "none",
+          }}
+        >
+          {children}
+        </div>
 
-      <NespressoMenu />
+        <NespressoMenu />
+      </div>
     </div>
   );
 }
