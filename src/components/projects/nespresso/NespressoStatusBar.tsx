@@ -1,9 +1,26 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 /**
  * Mock iPhone status bar — time, signal, wifi, battery.
  * Pure SVG/CSS, no assets required.
- * Sits at the very top of the phone frame and is sticky on scroll.
+ *
+ * Only renders when the page is embedded in an iframe (i.e. inside the
+ * phone mockup in the case study). Standalone visits skip it because
+ * there's no phone bezel to make it feel native.
  */
 export default function NespressoStatusBar() {
+  const [embedded, setEmbedded] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setEmbedded(window.self !== window.top);
+    }
+  }, []);
+
+  if (!embedded) return null;
+
   return (
     <div className="sticky top-0 z-40 flex h-[60px] items-center justify-between bg-white/85 px-9 pt-5 text-[15px] font-normal text-black backdrop-blur-md">
       <span className="tabular-nums">9:41</span>

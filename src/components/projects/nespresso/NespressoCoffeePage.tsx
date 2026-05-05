@@ -152,30 +152,19 @@ function ProductCard({
         />
       </div>
 
-      {inCart ? (
-        <div className="flex items-center justify-between">
-          <button
-            type="button"
-            aria-label="Decrease"
-            onClick={() => setCount((c) => Math.max(0, c - 1))}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black"
-          >
-            <MinusIcon />
-          </button>
-          <div className="text-[12px] text-black">
-            {count} sleeve{count > 1 ? "s" : ""}
-          </div>
-          <button
-            type="button"
-            aria-label="Increase"
-            onClick={() => setCount((c) => c + 1)}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black"
-          >
-            <PlusIcon />
-          </button>
-        </div>
-      ) : (
-        <div className="flex items-end justify-between">
+      {/* Footer row — every element absolutely positioned at its true
+          anchor so layout doesn't fight with the morph. The (+) button
+          is the only one rendered once for both states. */}
+      <div className="relative h-9">
+        {/* Default: intensity + price, anchored left */}
+        <div
+          aria-hidden={inCart}
+          className={`absolute inset-y-0 left-0 flex items-center transition-[opacity,transform,filter] duration-[260ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
+            inCart
+              ? "pointer-events-none scale-[0.97] opacity-0 blur-[2px]"
+              : "scale-100 opacity-100 blur-0"
+          }`}
+        >
           <div className="text-[11px] leading-snug text-black/70">
             <div>Intensity: {intensity}/13</div>
             <div className="mt-0.5 flex items-center gap-1 text-black">
@@ -185,16 +174,53 @@ function ProductCard({
               <span>)</span>
             </div>
           </div>
-          <button
-            type="button"
-            aria-label={`Add ${capsule.name}`}
-            onClick={() => setCount(1)}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black"
-          >
-            <PlusIcon />
-          </button>
         </div>
-      )}
+
+        {/* In-cart: − button, anchored left */}
+        <button
+          type="button"
+          aria-label="Decrease"
+          aria-hidden={!inCart}
+          onClick={() => setCount((c) => Math.max(0, c - 1))}
+          className={`absolute inset-y-0 left-0 my-auto flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black transition-[opacity,transform,filter] duration-[260ms] ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95 ${
+            inCart
+              ? "scale-100 opacity-100 blur-0"
+              : "pointer-events-none scale-[0.97] opacity-0 blur-[2px]"
+          }`}
+        >
+          <MinusIcon />
+        </button>
+
+        {/* In-cart: count + total — full-width flex container centres the
+            inner stack in the row, no manual translate gymnastics. */}
+        <div
+          aria-hidden={!inCart}
+          className={`pointer-events-none absolute inset-0 flex items-center justify-center transition-[opacity,transform,filter] duration-[260ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
+            inCart
+              ? "scale-100 opacity-100 blur-0"
+              : "scale-[0.97] opacity-0 blur-[2px]"
+          }`}
+        >
+          <div className="flex flex-col items-center leading-tight">
+            <div className="text-[12px] font-normal text-black">
+              {count} sleeve{count > 1 ? "s" : ""}
+            </div>
+            <div className="text-[10px] font-normal tabular-nums text-stone-500">
+              €{(count * DEFAULT_PRICE).toFixed(2)}
+            </div>
+          </div>
+        </div>
+
+        {/* Always: + button, anchored right — same DOM node both states. */}
+        <button
+          type="button"
+          aria-label={inCart ? "Increase" : `Add ${capsule.name}`}
+          onClick={() => setCount((c) => c + 1)}
+          className="absolute inset-y-0 right-0 my-auto flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black transition-transform duration-150 ease-out active:scale-95"
+        >
+          <PlusIcon />
+        </button>
+      </div>
     </div>
   );
 }
@@ -226,14 +252,12 @@ function FilterGlyph() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.75"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M3 6h18" />
-      <path d="M7 12h10" />
-      <path d="M10 18h4" />
+      <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3Z" />
     </svg>
   );
 }

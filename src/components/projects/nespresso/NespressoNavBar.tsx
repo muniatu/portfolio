@@ -1,20 +1,28 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useMenu } from "./_menu-context";
 
 /**
  * Top navigation: burger (left), Nespresso logo (center), "Cart" (right).
- * Sticky just below the status bar. The burger toggles a shared menu
- * state (provided by PrototypeShell) which the menu overlay reads.
+ * Sticky at the top — sits just below the status bar when embedded in
+ * the phone mockup, or flush at the top in standalone view (no status bar).
  */
 export default function NespressoNavBar() {
   const { open, toggle } = useMenu();
+  const [embedded, setEmbedded] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setEmbedded(window.self !== window.top);
+    }
+  }, []);
 
   return (
     <div
-      className={`sticky top-[60px] z-30 pb-4 pt-3 transition-[padding] duration-300 ${
-        open ? "px-2" : "px-6"
-      }`}
+      className={`sticky z-30 pb-4 pt-3 transition-[padding] duration-300 ${
+        embedded ? "top-[60px]" : "top-0"
+      } ${open ? "px-2" : "px-6"}`}
     >
       {/* Floating pill — visible on any background */}
       <div
