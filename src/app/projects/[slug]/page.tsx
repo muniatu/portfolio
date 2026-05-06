@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   try {
     const { frontmatter } = getProjectBySlug(slug);
+    const shareImage = frontmatter.ogImage || frontmatter.cover || undefined;
     return {
       title: frontmatter.title,
       description: frontmatter.description,
@@ -24,7 +25,13 @@ export async function generateMetadata({ params }: { params: Params }) {
         title: frontmatter.title,
         description: frontmatter.description,
         type: "article",
-        images: frontmatter.cover ? [{ url: frontmatter.cover }] : [],
+        images: shareImage ? [{ url: shareImage }] : [],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: frontmatter.title,
+        description: frontmatter.description,
+        images: shareImage ? [shareImage] : [],
       },
     };
   } catch {

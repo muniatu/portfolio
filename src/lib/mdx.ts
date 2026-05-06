@@ -11,6 +11,7 @@ export type ProjectFrontmatter = {
   tags: string[];
   cover: string;
   coverCaption?: string;
+  ogImage?: string;
   color: string;
   featured: boolean;
   slug: string;
