@@ -1,14 +1,15 @@
 "use client";
 
 import { CSSProperties } from "react";
+import Link from "next/link";
 import { useMenu } from "./_menu-context";
 
-const PRIMARY = [
-  "Coffee",
-  "Machines",
-  "Drinkware",
-  "Sweetener and Bites",
-  "Home & Lifestyle",
+const PRIMARY: { label: string; href?: string }[] = [
+  { label: "Coffee", href: "/projects/nespresso-color-filter/coffee-plp" },
+  { label: "Machines" },
+  { label: "Drinkware" },
+  { label: "Sweetener and Bites" },
+  { label: "Home & Lifestyle" },
 ];
 const SECONDARY = ["Order History", "Recycle", "Stores", "Help"];
 
@@ -40,7 +41,7 @@ function reveal(open: boolean, delayMs: number): CSSProperties {
  * on it. Inner content cascades in row-by-row.
  */
 export default function NespressoMenu() {
-  const { open } = useMenu();
+  const { open, toggle } = useMenu();
 
   return (
     <div
@@ -84,13 +85,23 @@ export default function NespressoMenu() {
         {/* Primary categories */}
         <ul className="mt-7 space-y-4 px-1">
           {PRIMARY.map((c, i) => (
-            <li key={c} style={reveal(open, 110 + i * 40)}>
-              <button
-                type="button"
-                className="text-left text-[28px] font-normal leading-tight text-black"
-              >
-                {c}
-              </button>
+            <li key={c.label} style={reveal(open, 110 + i * 40)}>
+              {c.href ? (
+                <Link
+                  href={c.href}
+                  onClick={() => toggle()}
+                  className="block text-left text-[28px] font-normal leading-tight text-black"
+                >
+                  {c.label}
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  className="text-left text-[28px] font-normal leading-tight text-black"
+                >
+                  {c.label}
+                </button>
+              )}
             </li>
           ))}
         </ul>
