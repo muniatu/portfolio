@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useMenu } from "./_menu-context";
 import { useCart } from "./_cart-context";
 
@@ -49,16 +50,22 @@ export default function NespressoNavBar() {
           />
         </button>
 
-        {/* Nespresso logo — middle column, dead-centre */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/projects/nespresso/logo-nespresso.svg"
-          alt="Nespresso"
-          width={24}
-          height={24}
-          draggable={false}
-          className="select-none justify-self-center"
-        />
+        {/* Nespresso logo — middle column, dead-centre. Links home. */}
+        <Link
+          href="/projects/nespresso-color-filter/homepage"
+          aria-label="Nespresso home"
+          className="justify-self-center"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/projects/nespresso/logo-nespresso.svg"
+            alt="Nespresso"
+            width={24}
+            height={24}
+            draggable={false}
+            className="select-none"
+          />
+        </Link>
 
         {/* Cart label + count — right column, content aligned to end */}
         <button
