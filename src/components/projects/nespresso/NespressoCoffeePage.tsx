@@ -6,6 +6,7 @@ import NespressoStatusBar from "./NespressoStatusBar";
 import NespressoNavBar from "./NespressoNavBar";
 import NespressoFooter from "./NespressoFooter";
 import capsulesData from "./capsules.json";
+import { useCart } from "./_cart-context";
 
 type Capsule = {
   id: number;
@@ -107,7 +108,8 @@ function ProductCard({
   index: number;
   animate: boolean;
 }) {
-  const [count, setCount] = useState(0);
+  const { cart, add, setQty } = useCart();
+  const count = cart[capsule.id] ?? 0;
   const inCart = count > 0;
   const intensity = intensityFor(capsule.id);
   const src = encodeURI(`${CAPSULES_PATH}${capsule.filename}`);
@@ -170,7 +172,7 @@ function ProductCard({
           type="button"
           aria-label="Decrease"
           aria-hidden={!inCart}
-          onClick={() => setCount((c) => Math.max(0, c - 1))}
+          onClick={() => setQty(capsule.id, count - 1)}
           className={`absolute inset-y-0 left-0 my-auto flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black transition-[opacity,transform,filter] duration-[260ms] ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-95 ${
             inCart
               ? "scale-100 opacity-100 blur-0"
@@ -204,7 +206,7 @@ function ProductCard({
         <button
           type="button"
           aria-label={inCart ? "Increase" : `Add ${capsule.name}`}
-          onClick={() => setCount((c) => c + 1)}
+          onClick={() => add(capsule.id)}
           className="absolute inset-y-0 right-0 my-auto flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black transition-transform duration-150 ease-out active:scale-95"
         >
           <PlusIcon />

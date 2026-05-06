@@ -8,7 +8,9 @@ import {
   useState,
 } from "react";
 import { MenuProvider } from "./_menu-context";
+import { CartProvider } from "./_cart-context";
 import NespressoMenu from "./NespressoMenu";
+import NespressoCart from "./NespressoCart";
 
 const DRAG_THRESHOLD = 4;
 const VELOCITY_DECAY = 0.94;
@@ -26,9 +28,11 @@ const VELOCITY_SAMPLE_WINDOW_MS = 80;
  */
 export default function PrototypeShell({ children }: { children: ReactNode }) {
   return (
-    <MenuProvider>
-      <ShellInner>{children}</ShellInner>
-    </MenuProvider>
+    <CartProvider>
+      <MenuProvider>
+        <ShellInner>{children}</ShellInner>
+      </MenuProvider>
+    </CartProvider>
   );
 }
 
@@ -176,6 +180,7 @@ function ShellInner({ children }: { children: ReactNode }) {
         </div>
 
         <NespressoMenu />
+        <NespressoCart />
       </div>
     </div>
   );

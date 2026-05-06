@@ -27,47 +27,91 @@ Users, on the other hand, will always go the simpler route. In this case, color.
 
 People don't want to spend time remembering dense brand naming structures. They just want to enjoy the coffee they like and find it as fast as possible, so **it's our job to make it easier for them**.
 
-## The prototype
+## The design sprint experiment
 
-We had a chance to test something fresh during a one-week design sprint. We pulled together a list of hypotheses and observations from existing user data and let those drive the design. The color thing was the loudest signal, but not the only one.
+During a week long design sprint we had the opportunity to test a bunch of fresh ideas at once. [Guillem Linares](https://www.linkedin.com/in/guillemlinares/) and I put together a list of hypotheses and observations from existing user data and let those drive the design. The color mental model was put at the center of the experience, but that was not all.
+
+<Hypothesis
+  number="1"
+  title="The color grid"
+  claim="Organizing capsules by color reduces time-to-basket for returning users, because they already shop by color, not by name."
+>
+  Most visitors on Nespresso's website are returning customers buying their
+  usual capsules. The main goal of the product list page isn't discovery, it's
+  getting most users to their basket faster, without closing the door on the
+  ones who do want to browse.
+</Hypothesis>
+
+<Hypothesis
+  number="2"
+  title="The subscription funnel"
+  claim="Surfacing the subscription as the last step of the recurrent purchase, instead of as a separate funnel, will lift sign-ups, because the offer lands when intent is highest."
+>
+  If most visitors are returning customers buying their usual capsules, it makes
+  more sense to offer them a subscription at the end of their recurrent purchase
+  journey instead of promoting subscriptions on a separate funnel.
+</Hypothesis>
+
+So we built an end to end funnel, simulating the most common user journey, from the homepage to the final checkout.
+
+The original prototype was built in Figma, here I've rebuilt it in code for you to play with, try to purchase some capsules!
 
 <PhoneEmbed src="/projects/nespresso-color-filter/homepage" />
 
-Around 90% of visitors on the Nespresso website are returning customers buying their usual capsules. New flavors get tried mostly when free samples arrive with an order, not when someone scans the product list. That flips the brief: the job isn't discovery, it's getting the 90% to their basket faster, without closing the door on the 10% who do want to browse.
+## Measuring success
 
-If that's right, here's what should move:
+We ran an unmoderated test with eight frequent Vertuo buyers, all fitting the persona we had been designing for. For each hypothesis we picked metrics that could prove us wrong, not just confirm what we wanted to hear.
 
-<KeyPoints>
-  <KeyPoint title="Faster recognition.">People scan, they don't read. Time-to-basket drops, drop-off with it.</KeyPoint>
-  <KeyPoint title="Smoother repeats.">Easier purchases come back sooner. Reorder frequency without spending on acquisition.</KeyPoint>
-  <KeyPoint title="Fewer mis-taps.">Color cuts the added-then-removed pattern. Less back-and-forth before checkout.</KeyPoint>
-  <KeyPoint title="Discoverability deferred, not lost.">Descriptions move one tap deeper. The 10% lose nothing, the 90% stop paying for it.</KeyPoint>
-</KeyPoints>
+### Hypothesis 1: the color grid
 
-So the product card kept what the recurrent task depends on: name, intensity, color. Descriptions and tasting notes moved one tap away.
+We asked each participant to find and add their favorite capsules to the basket, starting from the homepage, and then to filter the grid by color. We also asked how easy the browsing experience felt on a five-point scale from _very complicated_ to _very easy_.
 
-Then the color filter, sitting at the top of the grid alongside the existing ones. Tap purple, you see purples. Tap purple and brown, you get both. The interaction is unremarkable on purpose. The point isn't the filter as a feature, it's that the page now speaks the language we kept hearing in interviews.
+<Metrics>
+  <Metric
+    value="8/8"
+    label="Found and added their favorite capsules without backtracking."
+  />
+  <Metric
+    value="7/8"
+    label="Filtered by color on the first try (one reached for search instead)."
+  />
+  <Metric value="4.5/5" label="How easy it was to browse, 5-point scale." />
+</Metrics>
 
-## What we heard
+### Hypothesis 2: the subscription funnel
 
-We tested it unmoderated with six users. One task: _"Find the coffee you usually buy."_
+We asked each participant to move to checkout once they were done adding capsules, and then to complete the purchase, watching whether anyone explored the subscription option on their own. Afterwards we backtracked and walked them through the value proposition explicitly to see if it landed.
 
-Some opened the page, scanned for a second, and tapped, no narration. Others noticed the color cue out loud:
+<Metrics>
+  <Metric value="8/8" label="Reached checkout without help." />
+  <Metric
+    value="1/8"
+    label="Explored the subscription on their own during checkout."
+  />
+  <Metric
+    value="4/8"
+    label="Found the value proposition compelling once understood."
+  />
+</Metrics>
 
-> "Oh, I can see all the colors straight away. That's cool."
->
-> "I always buy the purple ones, so this is faster."
+Organic engagement during checkout was low, which tracks with how upselling usually performs in e-commerce. The more interesting signal sat one step deeper: half the participants found the offer worth considering once it was framed, which is a different question than whether they'd notice it on a busy day.
 
-A handful of users had no reaction at all. They found their capsule, moved on, didn't comment on the change. Which is its own kind of finding: for them the color cue was already implicit, and surfacing it explicitly just matched what they'd been doing on their own.
+## Qualitative Feedback
 
-It wasn't a quantitative study. Six users, one task, a qualitative read. The idea is small enough that a small test was the right shape.
+Beyond the numbers, we asked how they felt about the overall look and feel of the page, the colors in the grid, the option to filter by color, and the value proposition of the subscription. We were listening for surprise more than approval.
 
-## What happened next
+<InterviewBubbles answers='[{"text":"Very clean and sleek design."},{"text":"I love how playful it looks."},{"text":"Organizing by colors is very clever!"}]' />
 
-The redesign that's in the pipeline includes a color filter on the product list. Not the more aggressive version we prototyped (color is an additional filter alongside the existing ones, not the primary navigation), but it's **the first time the website will have a way to filter by color**, and it came directly out of those six conversations.
+Most users called the page calmer than what they were used to, and the color filter landed without anyone needing it explained, which was the bigger signal: it was already how they thought about the products.
 
----
+<InterviewBubbles answers='[{"text":"I love that they can help me recycle, I never knew how to do it."},{"text":"Oh a discount on my regular purchase, interesting."},{"text":"Not for me, I’m not into subscriptions."},{"text":"I like looking for new capsules, I feel I’d miss that."}]' />
 
-It's a small feature. More of a quirk than a business goal, there's no revenue model hiding in a color swatch. But the team chose, in a redesign with a long list of bigger fights, to make room for the way users were already talking about the product. That's a more useful kind of win than the size suggests.
+The half who liked it valued a better process for recycling, the discount and not having to think about reordering. The half who didn't enjoy the small ritual of picking capsules each month, which is fair, the subscription is a service for one mode of behavior, not all of them.
 
-The most useful finding is usually the one nobody briefed you to look for. People had already solved the navigation problem in their own heads. The work was to listen carefully enough to notice, and to stop trying to teach them our names.
+## Conclusions
+
+Design sprints are a great way to step out of the comfort zone, test crazy ideas and collaborate with people you would maybe never talk to. No tickets, no standups, no pointless meetings, just a problem and a deadline.
+
+Separate teams are currently testing the color filter and **a semantic search** where typing _"blue"_ surfaces the blue capsules, _"strong"_ surfaces the high-intensity ones, and so on. Less extreme solutions but keeping the same mental model.
+
+The subscription upsell at the end of the purchase flow is in the pipeline to be tested next. Nespresso is a big company and things move slowly, but the prototype raised enough eyebrows in the right rooms that the idea is being seriously considered instead of being parked. That's already a useful outcome for a week-long sprint.
