@@ -69,6 +69,11 @@ export default function PhoneEmbed({
         </div>
       </div>
 
+      <p className="font-display max-w-md text-center text-[15px] italic leading-snug text-white/55">
+        This is a fully operational Next.js prototype running in your browser.
+        Not a clunky Figma.
+      </p>
+
       {/* Open the prototype standalone, full browser, in a new tab */}
       <a
         href={src}

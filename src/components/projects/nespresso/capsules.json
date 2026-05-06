@@ -3,192 +3,224 @@
     "id": 1,
     "filename": "001-Frosted  Caramel Nuts.png",
     "name": "Frosted Caramel Nuts",
-    "color": "#FDF9F4"
+    "color": "#FDF9F4",
+    "size": "carafe"
   },
   {
     "id": 2,
     "filename": "002-Vanilla Custard.png",
     "name": "Vanilla Custard",
-    "color": "#FDF8EC"
+    "color": "#FDF8EC",
+    "size": "carafe"
   },
   {
     "id": 3,
     "filename": "003-Cafe Joyeux.png",
     "name": "Café Joyeux",
-    "color": "#FFF3DC"
+    "color": "#FFF3DC",
+    "size": "espresso"
   },
   {
     "id": 4,
     "filename": "004-Solelio.png",
     "name": "Solelio",
-    "color": "#FFF4D1"
+    "color": "#FFF4D1",
+    "size": "gran-lungo"
   },
   {
     "id": 5,
     "filename": "005-Melozio.png",
     "name": "Melozio",
-    "color": "#FFEBD6"
+    "color": "#FFEBD6",
+    "size": "mug"
   },
   {
     "id": 6,
     "filename": "006-Golden Caramel.png",
     "name": "Golden Caramel",
-    "color": "#FEF6EB"
+    "color": "#FEF6EB",
+    "size": "mug"
   },
   {
     "id": 7,
     "filename": "007-Maple Pecan.png",
     "name": "Maple Pecan",
-    "color": "#FFEAE1"
+    "color": "#FFEAE1",
+    "size": "carafe"
   },
   {
     "id": 8,
     "filename": "008-Whisky Essence.png",
     "name": "Whisky Essence",
-    "color": "#FFEAD8"
+    "color": "#FFEAD8",
+    "size": "double-espresso"
   },
   {
     "id": 9,
     "filename": "009-Ontuoso.png",
     "name": "Ontuoso",
-    "color": "#FFE3E3"
+    "color": "#FFE3E3",
+    "size": "ristretto"
   },
   {
     "id": 10,
     "filename": "010-Ginseng Delight.png",
     "name": "Ginseng Delight",
-    "color": "#FFE6E3"
+    "color": "#FFE6E3",
+    "size": "espresso"
   },
   {
     "id": 11,
     "filename": "011-Forest Fruit.png",
     "name": "Forest Fruit",
-    "color": "#FFD8D9"
+    "color": "#FFD8D9",
+    "size": "mug"
   },
   {
     "id": 12,
     "filename": "012-Colombia.png",
     "name": "Colombia",
-    "color": "#FFD7E3"
+    "color": "#FFD7E3",
+    "size": "espresso"
   },
   {
     "id": 13,
     "filename": "013-Altissio.png",
     "name": "Altissio",
-    "color": "#F3E7FF"
+    "color": "#F3E7FF",
+    "size": "ristretto"
   },
   {
     "id": 14,
     "filename": "014-Altissio Decaffeinato.png",
     "name": "Altissio Decaffeinato",
-    "color": "#F3E7FF"
+    "color": "#F3E7FF",
+    "size": "ristretto"
   },
   {
     "id": 15,
     "filename": "015-Diavolitto.png",
     "name": "Diavolitto",
-    "color": "#E3E8FF"
+    "color": "#E3E8FF",
+    "size": "ristretto"
   },
   {
     "id": 16,
     "filename": "016-Cafe de Cuba.png",
     "name": "Café de Cuba",
-    "color": "#DDEEFF"
+    "color": "#DDEEFF",
+    "size": "espresso"
   },
   {
     "id": 17,
     "filename": "017-Festive Unforgettable.png",
     "name": "Festive Unforgettable",
-    "color": "#E9EEFF"
+    "color": "#E9EEFF",
+    "size": "carafe"
   },
   {
     "id": 18,
     "filename": "018-Odacio.png",
     "name": "Odacio",
-    "color": "#DBF4FF"
+    "color": "#DBF4FF",
+    "size": "gran-lungo"
   },
   {
     "id": 19,
     "filename": "019-Costa Rica.png",
     "name": "Costa Rica",
-    "color": "#D9F2FF"
+    "color": "#D9F2FF",
+    "size": "gran-lungo"
   },
   {
     "id": 20,
     "filename": "020-Blue Bottle.png",
     "name": "Blue Bottle",
-    "color": "#E0F7FF"
+    "color": "#E0F7FF",
+    "size": "mug"
   },
   {
     "id": 21,
     "filename": "021-Hawaii Kona.png",
     "name": "Hawaii Kona",
-    "color": "#EAF9FF"
+    "color": "#EAF9FF",
+    "size": "gran-lungo"
   },
   {
     "id": 22,
     "filename": "022-Peru.png",
     "name": "Peru",
-    "color": "#F3FBE5"
+    "color": "#F3FBE5",
+    "size": "gran-lungo"
   },
   {
     "id": 23,
     "filename": "023-Mexico.png",
     "name": "Mexico",
-    "color": "#F4FCE6"
+    "color": "#F4FCE6",
+    "size": "mug"
   },
   {
     "id": 24,
     "filename": "024-Peppermint.png",
     "name": "Peppermint",
-    "color": "#F1FDF7"
+    "color": "#F1FDF7",
+    "size": "carafe"
   },
   {
     "id": 25,
     "filename": "025-Forest Black.png",
     "name": "Forest Black",
-    "color": "#F2FCEE"
+    "color": "#F2FCEE",
+    "size": "carafe"
   },
   {
     "id": 26,
     "filename": "026-Il Caffe.png",
     "name": "Il Caffè",
-    "color": "#F5F8F3"
+    "color": "#F5F8F3",
+    "size": "espresso"
   },
   {
     "id": 27,
     "filename": "027-Double Espresso Dolce.png",
     "name": "Double Espresso Dolce",
-    "color": "#F1E6DA"
+    "color": "#F1E6DA",
+    "size": "double-espresso"
   },
   {
     "id": 28,
     "filename": "028 - Intenso.png",
     "name": "Intenso",
-    "color": "#EFE5E2"
+    "color": "#EFE5E2",
+    "size": "double-espresso"
   },
   {
     "id": 29,
     "filename": "029-Double Espresso Chiaro.png",
     "name": "Double Espresso Chiaro",
-    "color": "#F1E4DA"
+    "color": "#F1E4DA",
+    "size": "double-espresso"
   },
   {
     "id": 30,
     "filename": "030-Double Espresso Scuro.png",
     "name": "Double Espresso Scuro",
-    "color": "#F6E7E0"
+    "color": "#F6E7E0",
+    "size": "double-espresso"
   },
   {
     "id": 31,
     "filename": "031-Fortado.png",
     "name": "Fortado",
-    "color": "#E8E7E6"
+    "color": "#E8E7E6",
+    "size": "gran-lungo"
   },
   {
     "id": 32,
     "filename": "032-Ristretto Classico.png",
     "name": "Ristretto Classico",
-    "color": "#E9E9E9"
+    "color": "#E9E9E9",
+    "size": "ristretto"
   }
 ]

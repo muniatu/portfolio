@@ -12,6 +12,7 @@ type Capsule = {
   filename: string;
   name: string;
   color: string;
+  size: string;
 };
 
 const CAPSULES: Capsule[] = capsulesData;
@@ -25,6 +26,15 @@ const INTENSITY_PRESETS = [
   { label: "Medium (5–7)", min: 5, max: 7 },
   { label: "Strong (8–10)", min: 8, max: 10 },
   { label: "Intense (11–13)", min: 11, max: 13 },
+];
+
+const SIZE_FILTERS: Array<{ id: string; label: string; icon: string }> = [
+  { id: "ristretto",       label: "Ristretto",       icon: "/images/projects/nespresso/icons/cupsize-ristretto.svg" },
+  { id: "espresso",        label: "Espresso",        icon: "/images/projects/nespresso/icons/cupsize-espresso.svg" },
+  { id: "double-espresso", label: "Double Espresso", icon: "/images/projects/nespresso/icons/cupsize-double-espresso.svg" },
+  { id: "gran-lungo",      label: "Gran Lungo",      icon: "/images/projects/nespresso/icons/cupsize-gran-lungo.svg" },
+  { id: "mug",             label: "Mug",             icon: "/images/projects/nespresso/icons/cupsize-mug.svg" },
+  { id: "carafe",          label: "Carafe",          icon: "/images/projects/nespresso/icons/cupsize-carafe.svg" },
 ];
 
 // Plain-colour buckets. Each capsule belongs to one bucket based on its
@@ -52,25 +62,6 @@ const COLOR_GROUPS: Array<{
 // same number. Replace with real data when available.
 function intensityFor(id: number) {
   return Math.min(13, Math.max(1, Math.round((id / CAPSULES.length) * 13)));
-}
-
-function CapsuleIcon() {
-  // Inline so the icon picks up `currentColor` and we can scale it cleanly.
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 12 12"
-      fill="currentColor"
-      aria-hidden
-      className="inline-block"
-    >
-      <path d="M10.4787 8C10.2931 5.25085 8.57941 3.5 6 3.5C3.42035 3.5 1.70691 5.25085 1.52152 8H1V8.5H11V8H10.4787ZM2.01755 8C2.19238 5.51874 3.68448 4 6 4C8.31552 4 9.80761 5.51874 9.98245 8H2.01755Z" />
-      <path d="M6.25 5H5.75V7.5H6.25V5Z" />
-      <path d="M7.5415 5.88819C7.54638 5.89502 8 6.59277 8 7.5H8.5C8.5 6.43652 7.97998 5.64453 7.95801 5.61133L7.5415 5.88819Z" />
-      <path d="M3.5 7.5H4C4 6.59277 4.45386 5.89502 4.45825 5.88819L4.04199 5.61133C4.01977 5.64453 3.5 6.43652 3.5 7.5Z" />
-    </svg>
-  );
 }
 
 function PlusIcon() {
@@ -167,11 +158,9 @@ function ProductCard({
         >
           <div className="text-[11px] leading-snug text-black/70">
             <div>Intensity: {intensity}/13</div>
-            <div className="mt-0.5 flex items-center gap-1 text-black">
-              €{DEFAULT_PRICE.toFixed(2)}
-              <span>({DEFAULT_CAPSULES_PER_SLEEVE}</span>
-              <CapsuleIcon />
-              <span>)</span>
+            <div className="mt-0.5 text-black">
+              €{DEFAULT_PRICE.toFixed(2)}{" "}
+              <span>({DEFAULT_CAPSULES_PER_SLEEVE} capsules)</span>
             </div>
           </div>
         </div>
@@ -267,6 +256,7 @@ export default function NespressoCoffeePage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [activePresets, setActivePresets] = useState<number[]>([]);
   const [activeColors, setActiveColors] = useState<string[]>([]);
+  const [activeSizes, setActiveSizes] = useState<string[]>([]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -281,6 +271,7 @@ export default function NespressoCoffeePage() {
     return CAPSULES.filter((c) => {
       if (q && !c.name.toLowerCase().includes(q)) return false;
       if (allowedColorIds && !allowedColorIds.has(c.id)) return false;
+      if (activeSizes.length > 0 && !activeSizes.includes(c.size)) return false;
       if (activePresets.length > 0) {
         const intensity = intensityFor(c.id);
         const matches = activePresets.some((i) => {
@@ -291,7 +282,7 @@ export default function NespressoCoffeePage() {
       }
       return true;
     });
-  }, [query, activePresets, activeColors]);
+  }, [query, activePresets, activeColors, activeSizes]);
 
   const togglePreset = (i: number) =>
     setActivePresets((prev) =>
@@ -301,8 +292,13 @@ export default function NespressoCoffeePage() {
     setActiveColors((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
+  const toggleSize = (id: string) =>
+    setActiveSizes((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
 
-  const filterCount = activePresets.length + activeColors.length;
+  const filterCount =
+    activePresets.length + activeColors.length + activeSizes.length;
 
   // One-shot entrance cascade. After it settles, disable so subsequent
   // filter/search changes don't re-trigger the animation on every keystroke.
@@ -367,18 +363,32 @@ export default function NespressoCoffeePage() {
             onClick={() => setFilterOpen((o) => !o)}
             aria-label={`Filters${filterCount > 0 ? ` (${filterCount} active)` : ""}`}
             aria-expanded={filterOpen}
-            className={`relative flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
+            className={`flex h-9 shrink-0 items-center rounded-full px-3 transition-[background,color] duration-200 ${
               filterCount > 0 || filterOpen
                 ? "bg-black text-white"
                 : "bg-black/10 text-black"
             }`}
           >
             <FilterGlyph />
-            {filterCount > 0 ? (
-              <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[10px] font-normal text-black">
-                {filterCount}
+            {/* Count slot: width animates via the grid 0fr ↔ 1fr trick.
+                Always rendered so the number can fade out when filters
+                are cleared. */}
+            <span
+              aria-hidden={filterCount === 0}
+              className={`grid overflow-hidden transition-[grid-template-columns] duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                filterCount > 0 ? "grid-cols-[1fr]" : "grid-cols-[0fr]"
+              }`}
+            >
+              <span className="overflow-hidden">
+                <span
+                  className={`block pl-1.5 text-[12px] font-normal tabular-nums transition-opacity duration-200 ${
+                    filterCount > 0 ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  {filterCount}
+                </span>
               </span>
-            ) : null}
+            </span>
           </button>
         </div>
 
@@ -409,6 +419,7 @@ export default function NespressoCoffeePage() {
                     onClick={() => {
                       setActivePresets([]);
                       setActiveColors([]);
+                      setActiveSizes([]);
                     }}
                     className="text-[12px] font-normal text-stone-500 underline-offset-2 hover:underline"
                   >
@@ -437,6 +448,40 @@ export default function NespressoCoffeePage() {
                       }`}
                     >
                       {p.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Size */}
+              <div className="mb-1 text-[11px] font-normal uppercase tracking-wider text-stone-400">
+                Size
+              </div>
+              <div className="mb-4 flex flex-wrap gap-2">
+                {SIZE_FILTERS.map((s) => {
+                  const active = activeSizes.includes(s.id);
+                  return (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => toggleSize(s.id)}
+                      aria-pressed={active}
+                      className={`inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-[13px] font-normal transition-[transform,background,color,border-color] duration-150 ease-out active:scale-[0.97] ${
+                        active
+                          ? "border-black bg-black text-white"
+                          : "border-stone-300 bg-white text-black"
+                      }`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={s.icon}
+                        alt=""
+                        width={14}
+                        height={14}
+                        aria-hidden
+                        className={`block ${active ? "invert" : ""}`}
+                      />
+                      {s.label}
                     </button>
                   );
                 })}
