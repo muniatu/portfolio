@@ -30,6 +30,9 @@ export default function PhoneEmbed({
 }: Props) {
   return (
     <div className="not-prose my-12 flex flex-col items-center gap-5">
+      <p className="max-w-lg text-center text-[22px] mb-2 leading-snug text-white">
+        Try purchasing some capsules with this prototype:
+      </p>
       <div
         className="relative inline-block"
         style={{ width: `min(100%, ${width}px)` }}
@@ -69,9 +72,10 @@ export default function PhoneEmbed({
         </div>
       </div>
 
-      <p className="font-display max-w-md text-center text-[15px] italic leading-snug text-white/55">
-        This is a fully operational Next.js prototype running in your browser.
-        Not a clunky Figma.
+      <p className="font-display max-w-lg text-center text-[16px] my-2 italic leading-snug text-white/70">
+        Prototyping is changing fast, with AI we can now build projects like
+        this one in a few hours. Results are much more accurate & measurable
+        than they used to be with Figma.
       </p>
 
       {/* Open the prototype standalone, full browser, in a new tab */}
