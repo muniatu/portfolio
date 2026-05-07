@@ -10,7 +10,7 @@ export default function PrototypeLayout({
 }) {
   return (
     <main
-      className="min-h-screen"
+      className="nespresso-prototype min-h-screen"
       style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
     >
       {children}
