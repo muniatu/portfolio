@@ -67,6 +67,29 @@ body::after {
   }
 }
 
+/* Nespresso prototype: the UI is mobile-styled but viewed on desktop
+   inside the case study, so add a pointer cursor on every interactive
+   element so mouse users see something is clickable. */
+.nespresso-prototype a,
+.nespresso-prototype button,
+.nespresso-prototype [role="button"],
+.nespresso-prototype label[for],
+.nespresso-prototype summary,
+.nespresso-prototype select,
+.nespresso-prototype input[type="checkbox"],
+.nespresso-prototype input[type="radio"],
+.nespresso-prototype input[type="submit"],
+.nespresso-prototype input[type="button"],
+.nespresso-prototype [data-clickable] {
+  cursor: pointer;
+}
+
+.nespresso-prototype a:disabled,
+.nespresso-prototype button:disabled,
+.nespresso-prototype [aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 /* Nespresso prototype hotspot pulse — fades in softly instead of
    appearing at full opacity like Tailwind's built-in `ping`. */
 @keyframes nespresso-pulse {
