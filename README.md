@@ -1,9 +1,14 @@
-# Adrià Compte: Portfolio                                                                      
-▄▄▄▄▄▄▄     ▄▄▄▄▄   ▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄   ▄▄▄▄▄   ▄▄▄      ▄▄▄▄▄   ▄▄▄▄▄   
-███▀▀███▄ ▄███████▄ ███▀▀███▄ ▀▀▀███▀▀▀ ███▀▀▀▀▀ ▄███████▄ ███       ███  ▄███████▄ 
-███▄▄███▀ ███   ███ ███▄▄███▀    ███    ███▄▄    ███   ███ ███       ███  ███   ███ 
-███▀▀▀▀   ███▄▄▄███ ███▀▀██▄     ███    ███▀▀    ███▄▄▄███ ███       ███  ███▄▄▄███ 
-███        ▀█████▀  ███  ▀███    ███    ███       ▀█████▀  ████████ ▄███▄  ▀█████▀  
+# Adrià Compte: Portfolio                                                                                                                                                                         
+                                                                                                        
+`7MM"""Mq.   .g8""8q.   `7MM"""Mq.  MMP""MM""YMM `7MM"""YMM   .g8""8q.   `7MMF'      `7MMF'  .g8""8q.   
+  MM   `MM..dP'    `YM.   MM   `MM. P'   MM   `7   MM    `7 .dP'    `YM.   MM          MM  .dP'    `YM. 
+  MM   ,M9 dM'      `MM   MM   ,M9       MM        MM   d   dM'      `MM   MM          MM  dM'      `MM 
+  MMmmdM9  MM        MM   MMmmdM9        MM        MM""MM   MM        MM   MM          MM  MM        MM 
+  MM       MM.      ,MP   MM  YM.        MM        MM   Y   MM.      ,MP   MM      ,   MM  MM.      ,MP 
+  MM       `Mb.    ,dP'   MM   `Mb.      MM        MM       `Mb.    ,dP'   MM     ,M   MM  `Mb.    ,dP' 
+.JMML.       `"bmmd"'   .JMML. .JMM.   .JMML.    .JMML.       `"bmmd"'   .JMMmmmmMMM .JMML.  `"bmmd"'   
+                                                                                                        
+                                                                                                         
 
 banner made with my [ASCII BANNER CREATOR](https://ezascii.com/text-to-ascii-art)
                                                                                                                                                                  
