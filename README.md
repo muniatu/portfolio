@@ -1,13 +1,18 @@
 # Adrià Compte: Portfolio                                                                                                                                                                         
                                                                                                         
 ```
-  _______ _______  _______  _______  _______ _______  ___      ___  _______ 
- |   _   |   _   ||   _   \|       ||   _   |   _   ||   |    |   ||   _   |
- |.  1   |.  |   ||.  l   /|.|   | ||.  1___|.  |   ||.  |    |.  ||.  |   |
- |.  ____|.  |   ||.  _   1`-|.  |-'|.  __| |.  |   ||.  |___ |.  ||.  |   |
- |:  |   |:  1   ||:  |   |  |:  |  |:  |   |:  1   ||:  1   ||:  ||:  1   |
- |::.|   |::.. . ||::.|:. |  |::.|  |::.|   |::.. . ||::.. . ||::.||::.. . |
- `---'   `-------'`--- ---'  `---'  `---'   `-------'`-------'`---'`-------'
+     o      ooooooooo  oooooooooo  ooooo      o    888  oooooooo8                                 
+    888      888    88o 888    888  888      888   888 888                                        
+   8  88     888    888 888oooo88   888     8  88 o88   888oooooo                                 
+  8oooo88    888    888 888  88o    888    8oooo88             888                                
+o88o  o888o o888ooo88  o888o  88o8 o888o o88o  o888o   o88oooo888                                 
+                                                                                                  
+oooooooooo    ooooooo  oooooooooo  ooooooooooo ooooooooooo  ooooooo  ooooo       ooooo  ooooooo   
+ 888    888 o888   888o 888    888 88  888  88  888    88 o888   888o 888         888 o888   888o 
+ 888oooo88  888     888 888oooo88      888      888ooo8   888     888 888         888 888     888 
+ 888        888o   o888 888  88o       888      888       888o   o888 888      o  888 888o   o888 
+o888o         88ooo88  o888o  88o8    o888o    o888o        88ooo88  o888ooooo88 o888o  88ooo88   
+                                                                                                  
 ```
                                                                                                                                                                                                      
 banner made with my [ASCII BANNER CREATOR](https://ezascii.com/text-to-ascii-art)
