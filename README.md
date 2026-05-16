@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Adrià Compte: Portfolio                                                                      
+▄▄▄▄▄▄▄     ▄▄▄▄▄   ▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄   ▄▄▄▄▄   ▄▄▄      ▄▄▄▄▄   ▄▄▄▄▄   
+███▀▀███▄ ▄███████▄ ███▀▀███▄ ▀▀▀███▀▀▀ ███▀▀▀▀▀ ▄███████▄ ███       ███  ▄███████▄ 
+███▄▄███▀ ███   ███ ███▄▄███▀    ███    ███▄▄    ███   ███ ███       ███  ███   ███ 
+███▀▀▀▀   ███▄▄▄███ ███▀▀██▄     ███    ███▀▀    ███▄▄▄███ ███       ███  ███▄▄▄███ 
+███        ▀█████▀  ███  ▀███    ███    ███       ▀█████▀  ████████ ▄███▄  ▀█████▀  
 
-## Available Scripts
+banner made with my [ASCII BANNER CREATOR](https://ezascii.com/text-to-ascii-art)
+                                                                                                                                                                 
 
-In the project directory, you can run:
+The source code for my personal portfolio, live at [adriacompte.com](https://adriacompte.com).
 
-### `npm start`
+It's a Next.js site that brings together my case studies, side projects, and photography in one place, with a focus on typography, editorial layout, and a bit of creative coding.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## About me
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+I'm a Senior Product Designer based in Barcelona, with over 12 years of experience. By day I work as a Design Ops specialist at Nespresso. I'm also co-founder and Design Director of [bibready.com](https://bibready.com).
 
-### `npm test`
+My background mixes design and engineering. I grew up surrounded by graphic design, then studied Telecommunications Engineering, so I tend to think in tokens, components, systems, and semantics. Before Nespresso I worked as a UX Engineer at Softonic and Hewlett Packard, and I've been teaching design at different schools for the past five years.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+My interests orbit around design thinking, design systems, creative coding (Three.js, WebGL, Canvas), editorial design, and photography.
 
-### `npm run build`
+## What's in here
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Projects**: case studies covering product design, research, and development work, written in MDX under `src/content/projects`.
+- **Photography**: curated photo collections.
+- **About**: the longer version of my story.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Personal projects
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **[bibready.com](https://bibready.com)**: a marketplace for race bib transfers in the endurance sports world. I'm co-founder and Design Director.
+- **[ezascii.com](https://ezascii.com)**: a client-side ASCII art converter and tools platform, born from my love of creative coding, generative art, and low-resolution aesthetics.
 
-### `npm run eject`
+## Tech stack
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [Next.js 16](https://nextjs.org/) (App Router) + TypeScript
+- Tailwind CSS
+- GSAP and Framer Motion for animation
+- Three.js / React Three Fiber for 3D
+- MDX for case study content
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Local development
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+npm install
+npm run dev
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Open [http://localhost:3000](http://localhost:3000) to view it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```bash
+npm run build   # production build
+npm run start   # serve the production build
+npm run lint    # lint
+```
