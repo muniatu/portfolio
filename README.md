@@ -1,5 +1,3 @@
-# Adrià Compte: Portfolio                                                                                                                                                                         
-                                                                                                        
 ```
      o      ooooooooo  oooooooooo  ooooo      o    888  oooooooo8                                 
     888      888    88o 888    888  888      888   888 888                                        
@@ -16,7 +14,8 @@ o888o         88ooo88  o888o  88o8    o888o    o888o        88ooo88  o888ooooo88
 ```
                                                                                                                                                                                                      
 banner made with my [ASCII BANNER CREATOR](https://ezascii.com/text-to-ascii-art)
-                                                                                                                                                                 
+
+## Welcome to Adrià Compte's Portfolio                                                                                                                                                             
 
 The source code for my personal portfolio, live at [adriacompte.com](https://adriacompte.com).
 
