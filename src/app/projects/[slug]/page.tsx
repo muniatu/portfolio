@@ -8,6 +8,11 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 type Params = Promise<{ slug: string }>;
 
+// Revalidate every 5 minutes so the <PrototypeStats /> easter egg on the
+// Nespresso article (and any future live data) stays fresh-ish without
+// turning every project page into a per-request render.
+export const revalidate = 300;
+
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
 }

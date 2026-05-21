@@ -72,7 +72,7 @@ export default function PhoneEmbed({
         </div>
       </div>
 
-      <p className="font-display max-w-lg text-center text-[16px] my-2 italic leading-snug text-white/70">
+      <p className="max-w-lg text-center text-[16px] my-2 italic leading-snug text-white/70">
         Prototyping is changing fast, with AI we can now build projects like
         this one in a few hours. Results are much more accurate & measurable
         than they used to be with Figma.

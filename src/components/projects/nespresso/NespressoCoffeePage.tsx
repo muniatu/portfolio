@@ -7,6 +7,12 @@ import NespressoNavBar from "./NespressoNavBar";
 import NespressoFooter from "./NespressoFooter";
 import capsulesData from "./capsules.json";
 import { useCart } from "./_cart-context";
+import {
+  COLOR_GROUPS,
+  colorForCapsule,
+  type ColorGroupId,
+} from "@/lib/proto/color-groups";
+import { trackEvent } from "@/lib/proto/events";
 
 type Capsule = {
   id: number;
@@ -38,26 +44,9 @@ const SIZE_FILTERS: Array<{ id: string; label: string; icon: string }> = [
   { id: "carafe",          label: "Carafe",          icon: "/images/projects/nespresso/icons/cupsize-carafe.svg" },
 ];
 
-// Plain-colour buckets. Each capsule belongs to one bucket based on its
-// dominant hue. The `swatch` is the hex shown next to each chip.
-const COLOR_GROUPS: Array<{
-  id: string;
-  label: string;
-  swatch: string;
-  ids: number[];
-}> = [
-  { id: "yellow", label: "Yellow", swatch: "#F0B430", ids: [1, 2, 3, 4, 7] },
-  { id: "orange", label: "Orange", swatch: "#C0843C", ids: [5, 6] },
-  { id: "pink",   label: "Pink",   swatch: "#E4786C", ids: [10] },
-  { id: "red",    label: "Red",    swatch: "#CC4848", ids: [8, 9, 11] },
-  { id: "purple", label: "Purple", swatch: "#542478", ids: [12, 13, 14] },
-  { id: "navy",   label: "Navy",   swatch: "#0C183C", ids: [15, 17, 18] },
-  { id: "blue",   label: "Blue",   swatch: "#0090C0", ids: [19, 20] },
-  { id: "green",  label: "Green",  swatch: "#547818", ids: [22, 23, 24, 25, 26] },
-  { id: "brown",  label: "Brown",  swatch: "#543018", ids: [27, 28, 29, 30] },
-  { id: "grey",   label: "Grey",   swatch: "#909090", ids: [21, 31] },
-  { id: "black",  label: "Black",  swatch: "#181818", ids: [16, 32] },
-];
+// Plain-colour buckets are defined in `@/lib/proto/color-groups` (shared
+// with the analytics layer so add-to-cart and filter events can be bucketed
+// without duplicating the mapping).
 
 // Distribute intensities across the 1–13 scale so cards don't all show the
 // same number. Replace with real data when available.
@@ -206,7 +195,11 @@ function ProductCard({
         <button
           type="button"
           aria-label={inCart ? "Increase" : `Add ${capsule.name}`}
-          onClick={() => add(capsule.id)}
+          onClick={() => {
+            const color = colorForCapsule(capsule.id);
+            if (color) trackEvent(`add_to_cart:${color}`);
+            add(capsule.id);
+          }}
           className="absolute inset-y-0 right-0 my-auto flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black transition-transform duration-150 ease-out active:scale-95"
         >
           <PlusIcon />
@@ -260,6 +253,11 @@ export default function NespressoCoffeePage() {
   const [activeColors, setActiveColors] = useState<string[]>([]);
   const [activeSizes, setActiveSizes] = useState<string[]>([]);
 
+  // Page-view ping. Runs once on mount.
+  useEffect(() => {
+    trackEvent("coffee_plp_viewed");
+  }, []);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     const allowedColorIds = activeColors.length
@@ -291,9 +289,15 @@ export default function NespressoCoffeePage() {
       prev.includes(i) ? prev.filter((x) => x !== i) : [...prev, i]
     );
   const toggleColor = (id: string) =>
-    setActiveColors((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
+    setActiveColors((prev) => {
+      const turningOn = !prev.includes(id);
+      // Only count the activation side — turning a filter off shouldn't
+      // double-count as engagement with that color.
+      if (turningOn) {
+        trackEvent(`color_filter_applied:${id as ColorGroupId}`);
+      }
+      return turningOn ? [...prev, id] : prev.filter((x) => x !== id);
+    });
   const toggleSize = (id: string) =>
     setActiveSizes((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
@@ -362,7 +366,14 @@ export default function NespressoCoffeePage() {
           />
           <button
             type="button"
-            onClick={() => setFilterOpen((o) => !o)}
+            onClick={() => {
+              setFilterOpen((o) => {
+                // Only count the opening action, not closing — matches the
+                // "users that opened the filters" reading in the funnel.
+                if (!o) trackEvent("filter_panel_opened");
+                return !o;
+              });
+            }}
             aria-label={`Filters${filterCount > 0 ? ` (${filterCount} active)` : ""}`}
             aria-expanded={filterOpen}
             className={`flex h-9 shrink-0 items-center rounded-full px-3 transition-[background,color] duration-200 ${

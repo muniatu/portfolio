@@ -25,7 +25,7 @@ export default function Hypothesis({
         {title}
       </h3>
       {claim ? (
-        <p className="font-display my-6 text-[19px] italic leading-snug text-white">
+        <p className="my-6 text-[19px] italic leading-snug text-white">
           &ldquo;{claim}&rdquo;
         </p>
       ) : null}
