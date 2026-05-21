@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "./_cart-context";
 import capsulesData from "./capsules.json";
+import { trackEvent } from "@/lib/proto/events";
 
 type Capsule = {
   id: number;
@@ -134,8 +135,20 @@ export default function NespressoCart() {
   const [subscribe, setSubscribe] = useState(false);
   const [frequency, setFrequency] = useState(FREQUENCIES[0]);
 
+  // Fire once per closed → open transition so a single drawer open counts
+  // once, not on every re-render while open.
+  useEffect(() => {
+    if (open) trackEvent("cart_opened");
+  }, [open]);
+
   const handleCheckout = () => {
+    trackEvent("checkout_reached");
     setCheckedOut(true);
+  };
+
+  const handleSubscribeClick = () => {
+    trackEvent("subscription_explored");
+    setSubscribe(true);
   };
 
   const handleClose = () => {
@@ -442,7 +455,7 @@ export default function NespressoCart() {
             </button>
             <button
               type="button"
-              onClick={() => setSubscribe(true)}
+              onClick={handleSubscribeClick}
               aria-pressed={subscribe}
               className={`relative flex h-full flex-1 items-center justify-center gap-1.5 rounded-full transition-colors duration-200 ${
                 subscribe ? "text-black" : "text-stone-500"

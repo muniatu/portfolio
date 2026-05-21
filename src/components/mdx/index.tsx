@@ -6,6 +6,8 @@ import { KeyPoints, KeyPoint } from "./KeyPoints";
 import Hypothesis from "./Hypothesis";
 import { Metrics, Metric } from "./Metrics";
 import PhoneEmbed from "../projects/nespresso/PhoneEmbed";
+import PrototypeStats from "./PrototypeStats";
+import ArticleViewTracker from "./ArticleViewTracker";
 
 export const mdxComponents: MDXComponents = {
   ProjectImage,
@@ -17,4 +19,6 @@ export const mdxComponents: MDXComponents = {
   Metrics,
   Metric,
   PhoneEmbed,
+  PrototypeStats,
+  ArticleViewTracker,
 };

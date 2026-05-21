@@ -28,12 +28,11 @@ export default function InterviewBubbles({
   answers,
 }: InterviewBubblesProps) {
   const parsed: Answer[] = JSON.parse(answers);
-  const serif = !question;
 
   return (
     <div className="not-prose mx-auto mt-12 mb-16 max-w-3xl">
       {question ? (
-        <p className="font-display italic text-center text-2xl md:text-4xl text-white/85 leading-none mb-6">
+        <p className="italic text-center text-2xl md:text-4xl text-white/85 leading-tight mb-6 tracking-tight">
           “{question}”
         </p>
       ) : null}
@@ -41,9 +40,7 @@ export default function InterviewBubbles({
         {parsed.map((a, i) => (
           <div
             key={i}
-            className={`rounded-full border border-white/15 px-6 py-3 text-center text-base md:text-lg text-white/85 ${
-              serif ? "font-display italic" : ""
-            }`}
+            className="rounded-full border border-white/15 px-6 py-3 text-center text-base md:text-lg text-white/85"
           >
             “{highlight(a.text, a.colorWord, a.color)}”
           </div>
