@@ -18,7 +18,9 @@ export default async function PrototypeStats() {
     0,
   );
   const maxAddToCart = Math.max(...stats.perColor.map((c) => c.addToCart), 1);
-  const sorted = [...stats.perColor].sort((a, b) => b.addToCart - a.addToCart);
+  // Keep the COLOR_GROUPS rainbow order — yellow → orange → … → black —
+  // so the column reads as a consistent spectrum no matter which color
+  // is leading.
   const swatchById = Object.fromEntries(
     COLOR_GROUPS.map((g) => [g.id, { label: g.label, swatch: g.swatch }]),
   );
@@ -94,7 +96,7 @@ export default async function PrototypeStats() {
           Add to cart, by color · {fmt(totalAddToCart)} total
         </div>
         <ul className="mt-3 space-y-2">
-          {sorted.map((row) => {
+          {stats.perColor.map((row) => {
             const meta = swatchById[row.color];
             if (!meta) return null;
             const widthPct = Math.round((row.addToCart / maxAddToCart) * 100);
