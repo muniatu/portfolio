@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Icon Stroke Lab — SVG size &amp; stroke benchmark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0e10;
+    --panel:#141518;
+    --panel-2:#1a1c20;
+    --line:#2a2d33;
+    --line-soft:#202329;
+    --ink:#e9eaec;
+    --ink-dim:#9aa0a8;
+    --ink-faint:#5f656e;
+    --accent:#d8ff3e;
+    --accent-dim:#9bb52f;
+    --accent-ink:#d8ff3e;        /* accent used as TEXT (readable on this bg) */
+    --input-bg:#0a0b0d;
+    --danger:#ff6b5e;
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+  }
+  body.light{
+    --bg:#f4f5f1;
+    --panel:#ffffff;
+    --panel-2:#ecede8;
+    --line:#d2d5cd;
+    --line-soft:#e4e6df;
+    --ink:#181a1c;
+    --ink-dim:#585d62;
+    --ink-faint:#8a9097;
+    --accent-ink:#5b7c00;        /* deep lime that stays legible on white */
+    --input-bg:#f3f4f0;
+    --danger:#cc3b2e;
+  }
+  body.light header{background:linear-gradient(180deg,#ffffff,#f0f1ec)}
+  body.light .icon-row .thumb{background:#f0f1ec}
+  body.light ::-webkit-scrollbar-thumb{background:#cdd0c8;border:2px solid var(--bg)}
+  body.light ::-webkit-scrollbar-thumb:hover{background:#bcc0b6}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:14px;
+    line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+  .app{display:flex;flex-direction:column;height:100vh}
+
+  /* ---------- Top bar ---------- */
+  header{
+    display:flex;align-items:center;gap:18px;
+    padding:0 18px;height:52px;flex:0 0 auto;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#16181c,#111216);
+  }
+  .brand{display:flex;align-items:baseline;gap:10px}
+  .brand .mark{
+    font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:-.02em;
+  }
+  .brand .mark b{color:var(--accent-ink)}
+  .brand .tag{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.14em}
+  header .spacer{flex:1}
+  .btn{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;
+    background:var(--panel-2);color:var(--ink);border:1px solid var(--line);
+    padding:8px 13px;cursor:pointer;text-transform:uppercase;
+    transition:border-color .12s, background .12s, color .12s;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .btn:hover{border-color:var(--ink-faint)}
+  .btn.primary{background:var(--accent);color:#15170a;border-color:var(--accent);font-weight:600}
+  .btn.primary:hover{background:var(--accent-dim);border-color:var(--accent-dim)}
+  .btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+  /* ---------- Body layout ---------- */
+  .body{display:flex;flex:1;min-height:0}
+
+  /* ---------- Sidebar / icon list ---------- */
+  aside{
+    width:228px;flex:0 0 228px;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;background:var(--panel);
+  }
+  .aside-head{
+    padding:12px 14px 10px;border-bottom:1px solid var(--line-soft);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .aside-head h2{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-dim);font-weight:500}
+  .count{font-family:var(--mono);font-size:10.5px;color:var(--accent-ink)}
+  .icon-list{overflow-y:auto;flex:1;padding:8px}
+  .icon-row{
+    display:flex;align-items:center;gap:10px;padding:7px 8px;cursor:pointer;
+    border:1px solid transparent;
+  }
+  .icon-row:hover{background:var(--panel-2)}
+  .icon-row.active{background:var(--panel-2);border-color:var(--line)}
+  .icon-row .thumb{
+    width:26px;height:26px;flex:0 0 26px;display:grid;place-items:center;
+    background:#0a0b0d;border:1px solid var(--line-soft);
+  }
+  .icon-row .thumb img{display:block}
+  .icon-row .name{
+    font-family:var(--mono);font-size:11px;color:var(--ink-dim);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;
+  }
+  .icon-row.active .name{color:var(--ink)}
+  .icon-row .del{opacity:0;color:var(--ink-faint);font-family:var(--mono);font-size:13px;padding:0 2px}
+  .icon-row:hover .del{opacity:1}
+  .icon-row .del:hover{color:var(--danger)}
+  .aside-foot{padding:10px;border-top:1px solid var(--line-soft)}
+  .drop-mini{
+    border:1px dashed var(--line);padding:12px 10px;text-align:center;cursor:pointer;
+    font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;
+    transition:border-color .12s,color .12s;
+  }
+  .drop-mini:hover{border-color:var(--accent-ink);color:var(--accent-ink)}
+
+  /* ---------- Main ---------- */
+  main{flex:1;display:flex;flex-direction:column;min-width:0}
+
+  /* controls strip */
+  .controls{
+    display:flex;align-items:stretch;gap:0;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);background:var(--panel);
+  }
+  .ctl{
+    display:flex;flex-direction:column;gap:6px;padding:10px 16px;
+    border-right:1px solid var(--line-soft);justify-content:center;
+  }
+  .ctl > label{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.13em;color:var(--ink-faint)}
+  .seg{display:flex;border:1px solid var(--line)}
+  .seg button{
+    font-family:var(--mono);font-size:11px;background:transparent;color:var(--ink-dim);
+    border:none;border-right:1px solid var(--line);padding:5px 9px;cursor:pointer;min-width:34px;
+  }
+  .seg button:last-child{border-right:none}
+  .seg button.on{background:var(--accent);color:#15170a;font-weight:600}
+  .seg button:not(.on):hover{background:var(--panel-2);color:var(--ink)}
+  .field input[type=text]{
+    font-family:var(--mono);font-size:11.5px;background:var(--input-bg);color:var(--ink);
+    border:1px solid var(--line);padding:6px 8px;width:150px;
+  }
+  .field input[type=text]:focus{outline:none;border-color:var(--accent-ink)}
+  .field.small input{width:54px}
+  input[type=range]{accent-color:var(--accent);width:118px}
+  .rangewrap{display:flex;align-items:center;gap:9px}
+  .rangewrap .val{font-family:var(--mono);font-size:11px;color:var(--accent-ink);min-width:30px}
+  input[type=color]{
+    -webkit-appearance:none;appearance:none;width:30px;height:26px;border:1px solid var(--line);
+    background:none;cursor:pointer;padding:2px;
+  }
+  input[type=color]::-webkit-color-swatch{border:none}
+  input[type=color]::-webkit-color-swatch-wrapper{padding:0}
+  .colorwrap{display:flex;align-items:center;gap:8px}
+  .chk{display:flex;align-items:center;gap:7px;cursor:pointer;font-family:var(--mono);font-size:11px;color:var(--ink-dim)}
+  .chk input{accent-color:var(--accent);width:14px;height:14px}
+
+  /* viewport */
+  .viewport{flex:1;overflow:auto;padding:22px 26px 60px}
+  .viewport.empty{display:grid;place-items:center}
+
+  .dropzone-big{
+    border:1.5px dashed var(--line);padding:54px 48px;text-align:center;max-width:520px;
+    transition:border-color .15s,background .15s;
+  }
+  .dropzone-big.hover{border-color:var(--accent);background:rgba(216,255,62,.04)}
+  .dropzone-big h3{font-family:var(--mono);font-size:14px;letter-spacing:.02em;margin-bottom:8px}
+  .dropzone-big p{color:var(--ink-dim);font-size:13px;margin-bottom:18px;line-height:1.6}
+  .dropzone-big .hint{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:18px;text-transform:uppercase;letter-spacing:.1em}
+
+  .section-label{
+    font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;
+    color:var(--ink-faint);margin:4px 0 16px;display:flex;align-items:center;gap:10px;
+  }
+  .section-label::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+  .section-label b{color:var(--ink)}
+
+  /* matrix */
+  .matrix{display:inline-grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-bottom:36px}
+  .cell{background:var(--bg);padding:13px 15px}
+  .cell.corner{background:var(--panel)}
+  .cell.head{
+    background:var(--panel);font-family:var(--mono);font-size:11px;color:var(--ink);
+    display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;
+  }
+  .cell.head .sub{color:var(--ink-faint);font-size:9.5px}
+  .cell.rowhead{
+    background:var(--panel);font-family:var(--mono);font-size:11px;color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:62px;
+  }
+  .cell.rowhead .px{font-size:9.5px;color:var(--ink-faint)}
+  .cell-inner{display:flex;flex-direction:column;align-items:center;gap:11px}
+  .actual{
+    display:grid;place-items:center;padding:8px;border:1px solid var(--line-soft);
+  }
+  .actual img{display:block}
+  .inspector{position:relative;line-height:0;border:1px solid var(--line-soft)}
+  .inspector canvas{display:block;image-rendering:pixelated}
+  .cell .meta{font-family:var(--mono);font-size:9.5px;color:var(--ink-faint);letter-spacing:.04em}
+  .badge-orig{color:var(--accent-ink)}
+
+  /* gallery */
+  .gallery{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:1px;
+    background:var(--line-soft);border:1px solid var(--line-soft);
+  }
+  .gcell{
+    background:var(--bg);padding:16px 8px 9px;display:flex;flex-direction:column;align-items:center;gap:9px;
+    cursor:pointer;transition:background .1s;
+  }
+  .gcell:hover{background:var(--panel)}
+  .gcell.active{background:var(--panel);box-shadow:inset 0 0 0 1px var(--accent-ink)}
+  .gcell .gimg{display:grid;place-items:center;min-height:34px}
+  .gcell .glabel{
+    font-family:var(--mono);font-size:9.5px;color:var(--ink-dim);text-align:center;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+  }
+
+  .swatch-light{background:#ffffff}
+  .swatch-dark{background:#0a0b0d}
+  .swatch-checker{
+    background-image:
+      linear-gradient(45deg,#222 25%,transparent 25%),
+      linear-gradient(-45deg,#222 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#222 75%),
+      linear-gradient(-45deg,transparent 75%,#222 75%);
+    background-size:10px 10px;background-position:0 0,0 5px,5px -5px,-5px 0;background-color:#333;
+  }
+
+  .note{
+    font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);
+    border-left:2px solid var(--line);padding:7px 0 7px 12px;margin:30px 0 8px;max-width:640px;line-height:1.7;
+  }
+  .note b{color:var(--ink-dim)}
+
+  ::-webkit-scrollbar{width:11px;height:11px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:#2c2f35;border:2px solid var(--bg)}
+  ::-webkit-scrollbar-thumb:hover{background:#3a3e45}
+</style>
+</head>
+<body class="light">
+<div class="app">
+  <header>
+    <div class="brand">
+      <span class="mark">ICON&nbsp;STROKE&nbsp;<b>LAB</b></span>
+      <span class="tag">size × stroke benchmark</span>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn" id="themeBtn" title="Toggle light / dark UI">
+      <svg viewBox="0 0 24 24" id="themeIcon"><path d="M12 3v2M12 19v2M5 12H3M21 12h-2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>
+      <span id="themeLabel">Light</span>
+    </button>
+    <button class="btn" id="addBtn">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Add SVGs
+    </button>
+    <button class="btn" id="exportBtn">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Export PNG
+    </button>
+    <input type="file" id="fileInput" accept=".svg,image/svg+xml" multiple hidden>
+  </header>
+
+  <div class="body">
+    <aside>
+      <div class="aside-head">
+        <h2>Icons</h2><span class="count" id="iconCount">0</span>
+      </div>
+      <div class="icon-list" id="iconList"></div>
+      <div class="aside-foot">
+        <div class="drop-mini" id="dropMini">+ drop svg files</div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="controls">
+        <div class="ctl">
+          <label>Sizes (px)</label>
+          <div class="seg" id="sizeSeg">
+            <button data-size="16">16</button>
+            <button data-size="24">24</button>
+            <button data-size="32">32</button>
+            <button data-size="48">48</button>
+            <button data-size="64">64</button>
+          </div>
+        </div>
+        <div class="ctl field">
+          <label>Stroke widths (px)</label>
+          <input type="text" id="strokeInput" value="1, 1.5, 2, 2.5, 3" spellcheck="false">
+        </div>
+        <div class="ctl">
+          <label>Baseline</label>
+          <label class="chk"><input type="checkbox" id="origChk" checked> keep original</label>
+        </div>
+        <div class="ctl">
+          <label>Zoom (px / device-pixel)</label>
+          <div class="rangewrap">
+            <input type="range" id="zoom" min="1" max="20" step="1" value="1">
+            <span class="val" id="zoomVal">1×</span>
+          </div>
+        </div>
+        <div class="ctl">
+          <label>Device pixel ratio</label>
+          <div class="seg" id="dprSeg">
+            <button data-dpr="1" class="on">1×</button>
+            <button data-dpr="2">2×</button>
+          </div>
+        </div>
+        <div class="ctl">
+          <label>Background</label>
+          <div class="seg" id="bgSeg">
+            <button data-bg="dark">Dark</button>
+            <button data-bg="light" class="on">Light</button>
+            <button data-bg="checker">Grid</button>
+          </div>
+        </div>
+        <div class="ctl">
+          <label>Icon color</label>
+          <div class="colorwrap">
+            <input type="color" id="colorPick" value="#000000">
+            <label class="chk"><input type="checkbox" id="gridChk" checked> px grid</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="viewport empty" id="viewport"></div>
+    </main>
+  </div>
+</div>
+
+<script>
+/* ------------------------------------------------------------------ *
+ *  Icon Stroke Lab — vanilla, self-contained, in-memory only         *
+ * ------------------------------------------------------------------ */
+
+const SAMPLES = [
+  ['search.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>'],
+  ['heart.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>'],
+  ['settings.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>'],
+  ['bell.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>'],
+  ['arrow.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'],
+  ['check-circle.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>'],
+];
+
+const state = {
+  icons: [],            // {id,name,raw}
+  selected: null,       // id
+  sizes: new Set([16,24,32]),
+  strokes: [1,1.5,2,2.5,3],
+  keepOriginal: true,
+  zoom: 1,
+  dpr: 1,
+  bg: 'light',
+  color: '#000000',
+  grid: true,
+  theme: 'light',
+};
+let uid = 0;
+
+/* ---------- SVG normalization ---------- */
+function parseSvg(raw){
+  const doc = new DOMParser().parseFromString(raw, 'image/svg+xml');
+  if (doc.querySelector('parsererror')) return null;
+  return doc.querySelector('svg');
+}
+
+// Build a normalized SVG string sized to `size`, with optional stroke-width
+// override forced to ACTUAL rendered px (non-scaling-stroke) and a color for currentColor.
+function buildSvg(raw, size, strokeWidth, color){
+  const svg = parseSvg(raw);
+  if (!svg) return null;
+
+  // ensure viewBox
+  let vb = svg.getAttribute('viewBox');
+  if (!vb){
+    const w = parseFloat(svg.getAttribute('width')) || 24;
+    const h = parseFloat(svg.getAttribute('height')) || 24;
+    vb = `0 0 ${w} ${h}`;
+    svg.setAttribute('viewBox', vb);
+  }
+  svg.setAttribute('width', size);
+  svg.setAttribute('height', size);
+  svg.style.color = color;       // resolves currentColor
+  svg.removeAttribute('class');
+
+  if (strokeWidth != null){
+    const style = document.createElementNS('http://www.w3.org/2000/svg','style');
+    // Force the ACTUAL rendered stroke width in CSS px, independent of the
+    // icon's viewBox or the render size. non-scaling-stroke divides out the
+    // viewBox→viewport scaling so `stroke-width:1.5` renders as 1.5px on screen.
+    style.textContent = `* { stroke-width:${strokeWidth}px !important; vector-effect:non-scaling-stroke !important; }`;
+    svg.insertBefore(style, svg.firstChild);
+  }
+  return new XMLSerializer().serializeToString(svg);
+}
+
+function svgDataUrl(str){
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(str);
+}
+
+function loadImage(url){
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.onload = () => res(img);
+    img.onerror = rej;
+    img.src = url;
+  });
+}
+
+/* ---------- background painters ---------- */
+function paintBg(ctx, w, h){
+  if (state.bg === 'light'){ ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,w,h); }
+  else if (state.bg === 'dark'){ ctx.fillStyle = '#0a0b0d'; ctx.fillRect(0,0,w,h); }
+  else { // checker
+    const c = 6;
+    ctx.fillStyle = '#33373d'; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#22252a';
+    for (let y=0;y<h;y+=c) for (let x=0;x<w;x+=c)
+      if (((x/c)+(y/c))%2===0) ctx.fillRect(x,y,c,c);
+  }
+}
+
+/* ---------- inspector: true-pixel rasterization + magnify ---------- */
+async function renderInspector(canvas, raw, size, strokeWidth){
+  const dpr = state.dpr;
+  const zoom = state.zoom;
+  const devPx = Math.round(size * dpr);          // device pixels across
+  const disp = devPx * zoom;                     // displayed canvas size
+
+  // 1) rasterize SVG at exact device resolution
+  const off = document.createElement('canvas');
+  off.width = devPx; off.height = devPx;
+  const octx = off.getContext('2d');
+  const str = buildSvg(raw, size, strokeWidth, state.color);
+  if (!str) return;
+  const img = await loadImage(svgDataUrl(str));
+  octx.clearRect(0,0,devPx,devPx);
+  octx.drawImage(img, 0, 0, devPx, devPx);
+
+  // 2) magnify with nearest-neighbour onto display canvas, over chosen bg
+  canvas.width = disp; canvas.height = disp;
+  canvas.style.width = disp + 'px'; canvas.style.height = disp + 'px';
+  const ctx = canvas.getContext('2d');
+  paintBg(ctx, disp, disp);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(off, 0, 0, disp, disp);
+
+  // 3) pixel grid overlay (every device pixel)
+  if (state.grid && zoom >= 4){
+    ctx.strokeStyle = state.bg === 'light' ? 'rgba(0,0,0,.10)' : 'rgba(255,255,255,.09)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let i=0;i<=devPx;i++){
+      const p = i*zoom + .5;
+      ctx.moveTo(p,0); ctx.lineTo(p,disp);
+      ctx.moveTo(0,p); ctx.lineTo(disp,p);
+    }
+    ctx.stroke();
+  }
+}
+
+/* ---------- rendering: sidebar list ---------- */
+function renderList(){
+  const list = document.getElementById('iconList');
+  document.getElementById('iconCount').textContent = state.icons.length;
+  list.innerHTML = '';
+  state.icons.forEach(ic => {
+    const row = document.createElement('div');
+    row.className = 'icon-row' + (ic.id === state.selected ? ' active' : '');
+    const thumbColor = state.theme === 'light' ? '#3b3e43' : '#cfd2d6';
+    const thumb = svgDataUrl(buildSvg(ic.raw, 22, null, thumbColor));
+    row.innerHTML =
+      `<span class="thumb"><img src="${thumb}" width="22" height="22" alt=""></span>`+
+      `<span class="name" title="${ic.name}">${ic.name}</span>`+
+      `<span class="del" title="Remove">✕</span>`;
+    row.addEventListener('click', e => {
+      if (e.target.classList.contains('del')){ removeIcon(ic.id); return; }
+      state.selected = ic.id; render();
+    });
+    list.appendChild(row);
+  });
+}
+
+/* ---------- rendering: main viewport ---------- */
+function render(){
+  renderList();
+  const vp = document.getElementById('viewport');
+
+  if (state.icons.length === 0){
+    vp.classList.add('empty');
+    vp.innerHTML = `
+      <div class="dropzone-big" id="dzBig">
+        <h3>Drop your SVG icons here</h3>
+        <p>Drag a whole folder of <code>.svg</code> files in, or use <b>Add SVGs</b>.<br>
+        Everything stays in your browser — nothing is uploaded.</p>
+        <button class="btn primary" id="dzBtn">Choose files</button>
+        <div class="hint">Loaded with 6 sample icons to start &nbsp;·&nbsp; remove them anytime</div>
+      </div>`;
+    document.getElementById('dzBtn').onclick = () => fileInput.click();
+    wireDropzone(document.getElementById('dzBig'));
+    return;
+  }
+  vp.classList.remove('empty');
+
+  if (!state.selected || !state.icons.find(i=>i.id===state.selected))
+    state.selected = state.icons[0].id;
+  const ic = state.icons.find(i=>i.id===state.selected);
+
+  const sizes = [...state.sizes].sort((a,b)=>a-b);
+  const cols = [];
+  if (state.keepOriginal) cols.push({orig:true});
+  state.strokes.forEach(sw => cols.push({sw}));
+
+  // --- matrix for selected icon ---
+  let html = `<div class="section-label">Pixel inspector — <b>${ic.name}</b> &nbsp;·&nbsp; rows = render size, columns = stroke (actual px)</div>`;
+  html += `<div class="matrix" id="matrix" style="grid-template-columns:auto repeat(${cols.length},auto)">`;
+  // header row
+  html += `<div class="cell corner"></div>`;
+  cols.forEach(c => {
+    if (c.orig) html += `<div class="cell head"><span class="badge-orig">original</span></div>`;
+    else html += `<div class="cell head">${c.sw}<span class="sub">px</span></div>`;
+  });
+  // body rows
+  const authored = authoredStroke(ic.raw);
+  sizes.forEach(size => {
+    html += `<div class="cell rowhead">${size}<span class="px">px</span></div>`;
+    cols.forEach(c => {
+      const sw = c.orig ? null : c.sw;
+      const key = `${size}_${c.orig?'orig':c.sw}`;
+      const actualSvg = svgDataUrl(buildSvg(ic.raw, size, sw, state.color));
+      let meta;
+      if (c.orig) meta = authored != null ? `renders ≈${(authored*size/vbScale(ic.raw)).toFixed(2)}px` : 'as authored';
+      else meta = `${sw}px stroke`;
+      html += `<div class="cell">
+        <div class="cell-inner">
+          <div class="actual swatch-${state.bg}"><img src="${actualSvg}" width="${size}" height="${size}" alt=""></div>
+          <div class="inspector"><canvas data-key="${key}" data-size="${size}" data-sw="${c.orig?'':sw}"></canvas></div>
+          <div class="meta">${meta}</div>
+        </div>
+      </div>`;
+    });
+  });
+  html += `</div>`;
+
+  // --- gallery of all icons at active settings ---
+  const gSize = sizes[0] || 24;
+  const gSw = state.strokes[0] ?? null;
+  html += `<div class="section-label">All icons — <b>${gSize}px</b> @ stroke <b>${state.keepOriginal?'original':gSw+'px'}</b> &nbsp;·&nbsp; click to inspect</div>`;
+  html += `<div class="gallery">`;
+  state.icons.forEach(g => {
+    const sw = state.keepOriginal ? null : gSw;
+    const u = svgDataUrl(buildSvg(g.raw, gSize, sw, state.color));
+    html += `<div class="gcell ${g.id===state.selected?'active':''}" data-id="${g.id}">
+        <div class="gimg swatch-${state.bg}" style="padding:6px"><img src="${u}" width="${gSize}" height="${gSize}" alt=""></div>
+        <div class="glabel" title="${g.name}">${g.name}</div>
+      </div>`;
+  });
+  html += `</div>`;
+
+  html += `<div class="note">
+    <b>Reading the grid.</b> The inspector rasterizes each icon at true device resolution (${state.dpr}× DPR) then magnifies it — what you see is the exact pixel coverage the browser produces.
+    Stroke values are the <b>actual rendered width in CSS px</b> (forced via non-scaling-stroke), so "1.5" is a real 1.5px stroke at every size.
+    The <span class="badge-orig">original</span> column keeps the icon's authored stroke and shows what it renders to at each size.
+    Watch for half-pixel straddling and grey anti-alias fringe at 16px — those are the strokes that look soft.
+    Filled (solid) icons ignore stroke-width by design.
+  </div>`;
+
+  vp.innerHTML = html;
+
+  // gallery clicks
+  vp.querySelectorAll('.gcell').forEach(el =>
+    el.onclick = () => { state.selected = el.dataset.id; render(); vp.scrollTo({top:0,behavior:'smooth'}); });
+
+  // render all inspector canvases (async, sequential to keep it light)
+  const canvases = [...vp.querySelectorAll('canvas')];
+  (async () => {
+    for (const cv of canvases){
+      const size = +cv.dataset.size;
+      const sw = cv.dataset.sw === '' ? null : +cv.dataset.sw;
+      await renderInspector(cv, ic.raw, size, sw);
+    }
+  })();
+}
+
+// scale of viewBox (assumes square-ish) to convert user units → px
+function vbScale(raw){
+  const svg = parseSvg(raw);
+  const vb = (svg && svg.getAttribute('viewBox') || '0 0 24 24').split(/[\s,]+/).map(Number);
+  return vb[2] || 24;
+}
+
+// best-effort read of the icon's authored stroke-width (in viewBox user units)
+function authoredStroke(raw){
+  const svg = parseSvg(raw);
+  if (!svg) return null;
+  const onRoot = svg.getAttribute('stroke-width');
+  if (onRoot) return parseFloat(onRoot);
+  const el = svg.querySelector('[stroke-width]');
+  if (el) return parseFloat(el.getAttribute('stroke-width'));
+  return null;
+}
+
+/* ---------- file handling ---------- */
+function addIcon(name, raw){
+  if (!parseSvg(raw)) return false;
+  state.icons.push({ id:'i'+(uid++), name, raw });
+  return true;
+}
+function removeIcon(id){
+  state.icons = state.icons.filter(i=>i.id!==id);
+  if (state.selected === id) state.selected = state.icons[0]?.id || null;
+  render();
+}
+async function handleFiles(files){
+  const arr = [...files].filter(f => /\.svg$/i.test(f.name) || f.type === 'image/svg+xml');
+  let added = 0;
+  for (const f of arr){
+    const text = await f.text();
+    if (addIcon(f.name.replace(/\.svg$/i,''), text)) added++;
+  }
+  if (added) { if(!state.selected) state.selected = state.icons[0].id; render(); }
+}
+
+function wireDropzone(el){
+  if (!el) return;
+  ['dragenter','dragover'].forEach(ev => el.addEventListener(ev, e => {
+    e.preventDefault(); el.classList.add('hover');
+  }));
+  ['dragleave','drop'].forEach(ev => el.addEventListener(ev, e => {
+    e.preventDefault(); el.classList.remove('hover');
+  }));
+  el.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
+}
+
+/* ---------- PNG export of the matrix ---------- */
+async function exportPng(){
+  const ic = state.icons.find(i=>i.id===state.selected);
+  if (!ic) return;
+  const sizes = [...state.sizes].sort((a,b)=>a-b);
+  const cols = [];
+  if (state.keepOriginal) cols.push({orig:true});
+  state.strokes.forEach(sw => cols.push({sw}));
+
+  const pad = 22, gap = 22, headH = 30, rowHeadW = 56, label = 16;
+  // precompute cell pixel sizes
+  const cellSizes = sizes.map(s => Math.round(s*state.dpr)*state.zoom);
+  const colW = Math.max(...cellSizes, 60) + gap;
+  const colWByRow = (s) => Math.round(s*state.dpr)*state.zoom;
+
+  // we'll lay cells left-aligned per row using max width column
+  const maxCell = Math.max(...cellSizes, 60);
+  const W = pad*2 + rowHeadW + cols.length*(maxCell+gap);
+  let rowHeights = sizes.map(s => Math.round(s*state.dpr)*state.zoom + label + 10);
+  const H = pad*2 + headH + rowHeights.reduce((a,b)=>a+b+gap,0);
+
+  const cv = document.createElement('canvas');
+  cv.width = W; cv.height = H;
+  const ctx = cv.getContext('2d');
+  ctx.fillStyle = '#0d0e10'; ctx.fillRect(0,0,W,H);
+  ctx.textBaseline = 'middle';
+
+  // headers
+  ctx.font = '600 13px "IBM Plex Mono", monospace';
+  cols.forEach((c,ci) => {
+    const x = pad + rowHeadW + ci*(maxCell+gap) + maxCell/2;
+    ctx.fillStyle = c.orig ? '#d8ff3e' : '#e9eaec';
+    ctx.textAlign = 'center';
+    ctx.fillText(c.orig ? 'original' : c.sw+'px', x, pad + headH/2);
+  });
+
+  let y = pad + headH;
+  for (let ri=0; ri<sizes.length; ri++){
+    const size = sizes[ri];
+    const cell = Math.round(size*state.dpr)*state.zoom;
+    // row head
+    ctx.fillStyle = '#e9eaec'; ctx.textAlign = 'left';
+    ctx.font = '600 13px "IBM Plex Mono", monospace';
+    ctx.fillText(size+'px', pad, y + cell/2);
+
+    for (let ci=0; ci<cols.length; ci++){
+      const c = cols[ci];
+      const sw = c.orig ? null : c.sw;
+      const x = pad + rowHeadW + ci*(maxCell+gap) + (maxCell-cell)/2;
+      // raster
+      const off = document.createElement('canvas');
+      const devPx = Math.round(size*state.dpr);
+      off.width = devPx; off.height = devPx;
+      const octx = off.getContext('2d');
+      const img = await loadImage(svgDataUrl(buildSvg(ic.raw, size, sw, state.color)));
+      octx.drawImage(img,0,0,devPx,devPx);
+      // bg + magnify
+      paintBg(ctx, x, y); // noop guard
+      const sub = ctx;
+      // paint bg block
+      if (state.bg==='light'){ctx.fillStyle='#fff';ctx.fillRect(x,y,cell,cell);}
+      else if (state.bg==='dark'){ctx.fillStyle='#0a0b0d';ctx.fillRect(x,y,cell,cell);}
+      else { const cc=6; ctx.fillStyle='#33373d';ctx.fillRect(x,y,cell,cell); ctx.fillStyle='#22252a';
+             for(let yy=0;yy<cell;yy+=cc)for(let xx=0;xx<cell;xx+=cc) if(((xx/cc)+(yy/cc))%2===0) ctx.fillRect(x+xx,y+yy,cc,cc);}
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(off, x, y, cell, cell);
+      // grid
+      if (state.grid && state.zoom>=4){
+        ctx.strokeStyle = state.bg==='light'?'rgba(0,0,0,.10)':'rgba(255,255,255,.09)';
+        ctx.lineWidth=1; ctx.beginPath();
+        for(let i=0;i<=devPx;i++){const p=Math.round(x)+i*state.zoom+.5;ctx.moveTo(p,y);ctx.lineTo(p,y+cell);
+          const q=Math.round(y)+i*state.zoom+.5;ctx.moveTo(x,q);ctx.lineTo(x+cell,q);}
+        ctx.stroke();
+      }
+      // border
+      ctx.strokeStyle='#2a2d33'; ctx.lineWidth=1;
+      ctx.strokeRect(x+.5,y+.5,cell-1,cell-1);
+    }
+    y += cell + label + 10 + gap;
+  }
+
+  // watermark
+  ctx.fillStyle='#5f656e'; ctx.textAlign='right'; ctx.font='400 11px "IBM Plex Mono", monospace';
+  ctx.fillText(`${ic.name} · ${state.dpr}×dpr · zoom ${state.zoom} · icon stroke lab`, W-pad, H-pad/1.5);
+
+  const a = document.createElement('a');
+  a.download = `${ic.name}_stroke-benchmark.png`;
+  a.href = cv.toDataURL('image/png');
+  a.click();
+}
+
+/* ---------- controls wiring ---------- */
+const fileInput = document.getElementById('fileInput');
+document.getElementById('addBtn').onclick = () => fileInput.click();
+document.getElementById('dropMini').onclick = () => fileInput.click();
+fileInput.onchange = () => { handleFiles(fileInput.files); fileInput.value=''; };
+document.getElementById('exportBtn').onclick = exportPng;
+
+document.getElementById('sizeSeg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  const s = +b.dataset.size;
+  if (state.sizes.has(s)){ if(state.sizes.size>1) state.sizes.delete(s); }
+  else state.sizes.add(s);
+  syncSizeSeg(); render();
+});
+function syncSizeSeg(){
+  document.querySelectorAll('#sizeSeg button').forEach(b =>
+    b.classList.toggle('on', state.sizes.has(+b.dataset.size)));
+}
+
+document.getElementById('strokeInput').addEventListener('change', e => {
+  const vals = e.target.value.split(/[\s,]+/).map(parseFloat).filter(v => !isNaN(v) && v>0);
+  if (vals.length){ state.strokes = vals; render(); }
+});
+document.getElementById('origChk').onchange = e => { state.keepOriginal = e.target.checked; render(); };
+document.getElementById('gridChk').onchange = e => { state.grid = e.target.checked; render(); };
+
+const zoom = document.getElementById('zoom');
+zoom.oninput = e => { state.zoom = +e.target.value; document.getElementById('zoomVal').textContent = state.zoom+'×'; render(); };
+
+document.getElementById('dprSeg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  state.dpr = +b.dataset.dpr;
+  document.querySelectorAll('#dprSeg button').forEach(x=>x.classList.toggle('on', x===b));
+  render();
+});
+document.getElementById('bgSeg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  state.bg = b.dataset.bg;
+  document.querySelectorAll('#bgSeg button').forEach(x=>x.classList.toggle('on', x===b));
+  render();
+});
+document.getElementById('colorPick').oninput = e => { state.color = e.target.value; render(); };
+
+const themeBtn = document.getElementById('themeBtn');
+const SUN = '<path d="M12 3v2M12 19v2M5 12H3M21 12h-2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/>';
+const MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>';
+function updateThemeBtn(){
+  const dark = state.theme === 'dark';
+  document.getElementById('themeLabel').textContent = dark ? 'Light' : 'Dark';
+  document.getElementById('themeIcon').innerHTML = dark ? SUN : MOON;
+}
+themeBtn.onclick = () => {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  document.body.classList.toggle('light', state.theme === 'light');
+  updateThemeBtn();
+  render();
+};
+
+// whole-window drop
+wireDropzone(document.body);
+window.addEventListener('dragover', e => e.preventDefault());
+window.addEventListener('drop', e => e.preventDefault());
+
+/* ---------- boot ---------- */
+SAMPLES.forEach(([n,r]) => addIcon(n, r));
+state.selected = state.icons[0]?.id || null;
+syncSizeSeg();
+updateThemeBtn();
+render();
+</script>
+</body>
+</html>
