@@ -1,7 +1,6 @@
 import Image from "next/image";
-import fs from "fs";
 import path from "path";
-import { imageSize } from "image-size";
+import sharp from "sharp";
 
 type ProjectImageProps = {
   src: string;
@@ -9,17 +8,16 @@ type ProjectImageProps = {
   className?: string;
 };
 
-export default function ProjectImage({ src, alt, className = "my-12" }: ProjectImageProps) {
+export default async function ProjectImage({ src, alt, className = "my-12" }: ProjectImageProps) {
   const filePath = path.join(process.cwd(), "public", src);
   let width = 900;
   let height = 600;
 
   try {
-    const buffer = fs.readFileSync(filePath);
-    const dimensions = imageSize(new Uint8Array(buffer));
-    if (dimensions.width && dimensions.height) {
-      width = dimensions.width;
-      height = dimensions.height;
+    const metadata = await sharp(filePath).metadata();
+    if (metadata.width && metadata.height) {
+      width = metadata.width;
+      height = metadata.height;
     }
   } catch {
     // fallback to defaults if file not found

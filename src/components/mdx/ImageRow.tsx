@@ -1,20 +1,18 @@
 import Image from "next/image";
-import fs from "fs";
 import path from "path";
-import { imageSize } from "image-size";
+import sharp from "sharp";
 
 type ImageRowProps = {
   images: string;
   className?: string;
 };
 
-function getDimensions(src: string) {
+async function getDimensions(src: string) {
   try {
     const filePath = path.join(process.cwd(), "public", src);
-    const buffer = fs.readFileSync(filePath);
-    const dimensions = imageSize(new Uint8Array(buffer));
-    if (dimensions.width && dimensions.height) {
-      return { width: dimensions.width, height: dimensions.height };
+    const metadata = await sharp(filePath).metadata();
+    if (metadata.width && metadata.height) {
+      return { width: metadata.width, height: metadata.height };
     }
   } catch {
     // fallback
@@ -22,13 +20,14 @@ function getDimensions(src: string) {
   return { width: 400, height: 300 };
 }
 
-export default function ImageRow({ images, className = "my-12" }: ImageRowProps) {
+export default async function ImageRow({ images, className = "my-12" }: ImageRowProps) {
   const parsed: { src: string; alt: string }[] = JSON.parse(images);
+  const dimensions = await Promise.all(parsed.map((img) => getDimensions(img.src)));
 
   return (
     <div className={`grid gap-4 ${className}`} style={{ gridTemplateColumns: `repeat(${parsed.length}, 1fr)` }}>
-      {parsed.map((img) => {
-        const { width, height } = getDimensions(img.src);
+      {parsed.map((img, i) => {
+        const { width, height } = dimensions[i];
         return (
           <Image
             key={img.src}
