@@ -28,6 +28,10 @@ export function getProjectBySlug(slug: string): {
   frontmatter: ProjectFrontmatter;
   content: string;
 } {
+  // Slugs come from the URL; reject anything that could escape PROJECTS_DIR
+  if (!/^[a-z0-9-]+$/i.test(slug)) {
+    throw new Error(`Invalid project slug: ${slug}`);
+  }
   const filePath = path.join(PROJECTS_DIR, `${slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContents);
